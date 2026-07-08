@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Legacy OS - My Journal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "glass-fill": "rgba(255, 255, 255, 0.03)",
+                        "on-surface-muted": "rgba(226, 226, 226, 0.70)",
+                        "surface-container-highest": "#353535",
+                        "glass-hover": "rgba(255, 255, 255, 0.06)",
+                        "surface-dim": "#131313",
+                        "secondary-container": "#474746",
+                        "surface-bright": "#393939",
+                        "surface-container-lowest": "#0e0e0e",
+                        "glass-border-hover": "rgba(255, 255, 255, 0.30)",
+                        "glass-border": "rgba(255, 255, 255, 0.10)",
+                        "inverse-surface": "#e2e2e2",
+                        "on-tertiary-fixed": "#191c1d",
+                        "primary": "#ffffff",
+                        "on-secondary": "#303030",
+                        "surface": "#131313",
+                        "on-surface": "#e2e2e2",
+                        "secondary-fixed": "#e4e2e1",
+                        "on-primary-container": "#636565",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary": "#2d3132",
+                        "on-primary": "#2f3131",
+                        "tertiary": "#ffffff",
+                        "on-primary-fixed": "#1a1c1c",
+                        "error": "#ffb4ab",
+                        "primary-container": "#e2e2e2",
+                        "inverse-on-surface": "#303030",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#1b1c1b",
+                        "on-surface-variant": "#c4c7c8",
+                        "inverse-primary": "#5d5f5f",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-tertiary-container": "#626566",
+                        "on-secondary-container": "#b6b5b4",
+                        "secondary": "#c8c6c5",
+                        "on-error-container": "#ffdad6",
+                        "surface-variant": "#353535",
+                        "primary-fixed-dim": "#c6c6c7",
+                        "on-secondary-fixed-variant": "#474746",
+                        "outline": "#8e9192",
+                        "on-tertiary-fixed-variant": "#444748",
+                        "on-primary-fixed-variant": "#454747",
+                        "on-background": "#e2e2e2",
+                        "tertiary-fixed": "#e0e3e4",
+                        "background": "#000000",
+                        "surface-container": "#1f1f1f",
+                        "primary-fixed": "#e2e2e2",
+                        "on-error": "#690005",
+                        "tertiary-fixed-dim": "#c4c7c8",
+                        "surface-container-low": "#1b1b1b",
+                        "surface-tint": "#c6c6c7",
+                        "outline-variant": "#444748",
+                        "tertiary-container": "#e0e3e4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "12px",
+                        "unit": "8px",
+                        "stack-lg": "48px",
+                        "stack-md": "24px",
+                        "gutter": "24px",
+                        "container-padding": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist", "Inter", "sans-serif"],
+                        "display-lg": ["Geist", "Inter", "sans-serif"],
+                        "label-sm": ["Geist", "Inter", "sans-serif"],
+                        "body-lg": ["Geist", "Inter", "sans-serif"],
+                        "headline-lg": ["Geist", "Inter", "sans-serif"],
+                        "label-md": ["Geist", "Inter", "sans-serif"],
+                        "body-md": ["Geist", "Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100;300;400;500;600;700;800;900&display=swap');
+        
+        body {
+            background-color: #000000;
+            overflow-x: hidden;
+            color: #ffffff;
+            font-family: 'Geist', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .glass-card {
+            backdrop-filter: blur(40px);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .liquid-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .liquid-shimmer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.05),
+                transparent
+            );
+            transform: rotate(45deg);
+            transition: 0.5s;
+            pointer-events: none;
+        }
+
+        .liquid-shimmer:hover::after {
+            left: 100%;
+            top: 100%;
+        }
+
+        .spatial-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+        }
+
+        .parallax-element {
+            transition: transform 0.1s ease-out;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="dark selection:bg-primary selection:text-surface">
+<div class="spatial-bg"></div>
+<!-- Navigation Header -->
+<header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-gutter py-unit rounded-full mt-6 mx-auto w-[calc(100%-80px)] max-w-7xl backdrop-blur-[40px] border border-glass-border glass-fill shadow-2xl transition-all duration-300">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Legacy OS</span>
+<nav class="hidden md:flex gap-6">
+<a class="font-label-md text-label-md text-on-surface-muted hover:bg-glass-hover px-4 py-2 rounded-full transition-all" href="#">Timeline</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1 px-4 py-2" href="#">Journal</a>
+<a class="font-label-md text-label-md text-on-surface-muted hover:bg-glass-hover px-4 py-2 rounded-full transition-all" href="#">The Vault</a>
+<a class="font-label-md text-label-md text-on-surface-muted hover:bg-glass-hover px-4 py-2 rounded-full transition-all" href="#">Collections</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-muted">search</span>
+<input class="bg-glass-fill border border-glass-border rounded-full py-2 pl-10 pr-4 text-sm focus:outline-none focus:border-primary transition-all w-48 focus:w-64" placeholder="Search entries..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-primary hover:bg-glass-hover p-2 rounded-full transition-all">settings</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-glass-border">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo0A_1P6O3UHJF2AlrDdOwOKXG36rlfySWEtoB4cIVcEIOUDGA-c1uaADQu4GVX1uSDXnFuT9xJAITcC6cadE9qQia3Rx7l34ykaGTfYotTaMgiId26mtolm0zJBPaazJ10VAYUdDga61g4mKdn_L66JNWJy8Wf3k6Uh3UPeHOZfPDXtxkhSNheUDK2a1pTHzp-lsGH5jR4F6saB1ULj7huz7TRLC_YD2QeDCstHezxXGJw7VibHjhqWSLQReHJtggfpH4DssKQque"/>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-24 max-w-7xl mx-auto px-container-padding">
+<!-- Hero Section -->
+<section class="mb-stack-lg text-center">
+<h1 class="font-display-lg text-display-lg mb-stack-sm text-primary tracking-tighter">My Digital Journal</h1>
+<p class="font-body-lg text-body-lg text-on-surface-muted max-w-2xl mx-auto">Capturing the ephemera of daily life in a timeless archive.</p>
+</section>
+<!-- View Controls & Filters -->
+<div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-stack-lg">
+<!-- View Switcher -->
+<div class="glass-fill backdrop-blur-[40px] border border-glass-border p-1 rounded-full flex gap-1">
+<button class="px-6 py-2 rounded-full text-label-md font-label-md bg-white text-black transition-all">Cards View</button>
+<button class="px-6 py-2 rounded-full text-label-md font-label-md text-on-surface-muted hover:bg-glass-hover transition-all">Timeline View</button>
+<button class="px-6 py-2 rounded-full text-label-md font-label-md text-on-surface-muted hover:bg-glass-hover transition-all">Book View</button>
+<button class="px-6 py-2 rounded-full text-label-md font-label-md text-on-surface-muted hover:bg-glass-hover transition-all">Mood View</button>
+</div>
+<!-- Mood Filters -->
+<div class="flex gap-2 flex-wrap justify-center">
+<button class="glass-card px-4 py-2 rounded-full text-label-sm font-label-sm flex items-center gap-2 hover:border-primary transition-all">
+<span class="w-2 h-2 rounded-full bg-yellow-400"></span> Happy
+                </button>
+<button class="glass-card px-4 py-2 rounded-full text-label-sm font-label-sm flex items-center gap-2 hover:border-primary transition-all">
+<span class="w-2 h-2 rounded-full bg-blue-400"></span> Peaceful
+                </button>
+<button class="glass-card px-4 py-2 rounded-full text-label-sm font-label-sm flex items-center gap-2 hover:border-primary transition-all">
+<span class="w-2 h-2 rounded-full bg-purple-400"></span> Creative
+                </button>
+<button class="glass-card px-4 py-2 rounded-full text-label-sm font-label-sm flex items-center gap-2 hover:border-primary transition-all">
+<span class="w-2 h-2 rounded-full bg-gray-400"></span> Reflective
+                </button>
+<button class="glass-card px-4 py-2 rounded-full text-label-sm font-label-sm flex items-center gap-2 hover:border-primary transition-all">
+<span class="w-2 h-2 rounded-full bg-orange-400"></span> Motivated
+                </button>
+</div>
+</div>
+<!-- Staggered Journal Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+<!-- Card 1 (Large Featured) -->
+<div class="md:col-span-4 group">
+<div class="glass-card p-4 rounded-lg liquid-shimmer cursor-pointer h-full">
+<div class="relative overflow-hidden rounded mb-4 aspect-[4/5]">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100" data-alt="A cinematic black and white high-contrast photograph of a lone figure sitting on a jagged mountain peak during sunset. The atmosphere is serene and moody, with dramatic clouds catching the last rays of light. The image style is clean, editorial, and sophisticated, matching a premium life-journaling application aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz3r0gl_d2zkFH4i7tWb1LycjLxSECgJrR_7EbALrw6uFXDkydhhZ6NS4yayme_vHQteVVNb_nrFMcvywrZ9klhhL26sr3ocQRfV5LhBeZQ0LXdn7RaHBR9p104FAPstbTDBULc09OhbXMY4WY64k7DIhs9TlWBpnHi9CLk-HwanVo05ZRTUiMn-3mWJdBVQOyLZGygerDIGW9udmu1yf6pD28L-f9WLBkmjBLfFgDeXpE5W538BkvC7LsFghlXQtp0sbIVA4mlqRP"/>
+<div class="absolute top-4 left-4 glass-fill backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">Reflection</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-label-sm font-label-sm text-on-surface-muted">July 05, 2025</span>
+<span class="material-symbols-outlined text-on-surface-muted text-sm">more_horiz</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-primary">Solitude at High Altitudes</h3>
+<p class="text-body-md font-body-md text-on-surface-muted line-clamp-2">Today I reached the summit of Kodaikanal. The silence up here is deafening, yet comforting...</p>
+</div>
+</div>
+</div>
+<!-- Card 2 (Standard) -->
+<div class="md:col-span-3 mt-12 md:mt-0 group">
+<div class="glass-card p-4 rounded-lg liquid-shimmer cursor-pointer">
+<div class="relative overflow-hidden rounded mb-4 aspect-square">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100" data-alt="A minimalist black and white macro shot of a single drop of ink hitting water, creating elegant ripples and swirls. The background is pure black, emphasizing the delicate fluid motion. The mood is artistic and contemplative, fitting the visual language of a high-fidelity digital memory archive." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIIlZvfF4-f3pJXQV-430phtKxESTib_6ob8mN-kQuU43nwLhSYjpHy7qxSABQt31Apix12WNsFEC4Li43djyYTK-9C_cLCxV3BJ4MQiT6hnS7zT94_WLJrVEGP8Qg6N0di8QiiaeLcrFHS0RpTkBMVurixK0Sh4BjkJ798nWiavb_tAUBPgpLwAjQW4R0S_ukwvsd2vuiSVCLVc_0Ir0gqZqUvAeNEUtW-KcFqBfha37FdOAHlgKuDPL4Ng-9tKLgAf0dD26etfU0"/>
+<div class="absolute top-4 left-4 glass-fill backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">Creative</div>
+</div>
+<div class="space-y-2">
+<span class="text-label-sm font-label-sm text-on-surface-muted">June 28, 2025</span>
+<h3 class="text-body-lg font-bold text-primary">The Flow of Ideas</h3>
+<p class="text-body-md font-body-md text-on-surface-muted line-clamp-3">Some thoughts on why creativity feels like a physical tide in the morning hours.</p>
+</div>
+</div>
+</div>
+<!-- Card 3 (Vertical) -->
+<div class="md:col-span-5 md:row-span-2 group">
+<div class="glass-card p-6 rounded-lg liquid-shimmer cursor-pointer h-full border-t-2 border-t-primary/20">
+<div class="relative overflow-hidden rounded mb-6 aspect-[16/9]">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A wide-angle, black and white cinematic shot of a modern, brutalist architecture museum interior with large glass windows and dramatic shadows. A single person is walking through the gallery. The lighting is cold and clinical yet beautiful, creating a sense of digital permanence and luxury journal aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc5aUehb0buguNekPI7s9asBqVuF-FMWz1oDh8iUerMeK1wfw7QP0N7knQnr8uMAa44u-7pUYGOEvYcU4cwN7MDbBcS2XgvDfP3XcI4dYYR6MVPkqL50MQmSlXpPdEkWnG-69H8mN7uSua4RIXfdsDn4Qf37Ma2BeWjz8IhCLs06A-2arVFGZQLIIZChxSnYf-Tegy_u0PpK4h1rVsKx4Fm19-YJGOSRPNYJYNxHQAlc2hIoWMHwiTlOAvapF5c3HaUGVT0ZaJcgoV"/>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-4 text-on-surface-muted">
+<span class="text-label-md font-label-md">Aug 12, 2025</span>
+<span class="w-1 h-1 rounded-full bg-on-surface-muted"></span>
+<span class="text-label-md font-label-md">Museum District</span>
+</div>
+<h2 class="text-headline-lg font-headline-lg text-primary leading-tight">Architecture of Memory</h2>
+<p class="text-body-lg font-body-lg text-on-surface-muted leading-relaxed">
+                            Visited the new archival museum today. It made me realize how much of our digital lives are built on fragile, invisible scaffolding. I want to build something that lasts centuries, not just server cycles. The way light hit the concrete walls was enough to change my perspective on longevity...
+                        </p>
+<div class="pt-4 flex gap-2">
+<span class="px-4 py-1 rounded-full bg-glass-fill border border-glass-border text-label-sm font-label-sm">Legacy</span>
+<span class="px-4 py-1 rounded-full bg-glass-fill border border-glass-border text-label-sm font-label-sm">Tech</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4 (Small Square) -->
+<div class="md:col-span-3 group">
+<div class="glass-card p-4 rounded-lg liquid-shimmer cursor-pointer">
+<div class="relative overflow-hidden rounded mb-4 aspect-square">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Close-up black and white photo of a vintage typewriter's mechanical parts and metal keys. Soft atmospheric lighting highlights the textures and dust particles. The image evokes nostalgia and a sense of old-world documentation, rendered with the high-fidelity clarity of a 2026 digital interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9pkgSWgNZywklvkiXb8I5u3ftCHeKwE-Un3u4mdOdCFNksTVJc3UaytIHESLkcFDZtL_4OVuoC0754VaMOk7wQShx3rcUnO2YFLeten4ty5TGipt6TLnSlh6izE14Kg4JBer7UcfY-3AfKSvTLMLPjLwHpqzOvXn7z1yp1AWP6xW0tv1ipDpaShPw61NPZsnnT5z8b--kx47ghbI00PqoaTb7Bk3N0nwlLt2KQec0Cddf-eSTVR-zPi4b0IUMfw40966RXQkwJUkq"/>
+</div>
+<h3 class="text-body-md font-bold text-primary">Analog Heartbeat</h3>
+<span class="text-label-sm font-label-sm text-on-surface-muted">May 19, 2025</span>
+</div>
+</div>
+<!-- Card 5 (Text only) -->
+<div class="md:col-span-4 group h-full">
+<div class="glass-card p-8 rounded-lg liquid-shimmer cursor-pointer h-full bg-gradient-to-br from-glass-fill to-transparent flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-primary mb-6 scale-150">format_quote</span>
+<p class="text-headline-md font-headline-md italic text-primary leading-relaxed">
+                            "The purpose of a journal is to remind our future selves of the strangers we once were."
+                        </p>
+</div>
+<div class="mt-8 flex justify-between items-end">
+<div>
+<p class="text-label-md font-label-md text-primary">Journal Prompt #42</p>
+<p class="text-label-sm font-label-sm text-on-surface-muted">Reflective Mood</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-muted">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty Spacer for FAB -->
+<div class="h-24"></div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-10 right-10 w-16 h-16 rounded-full bg-primary text-surface flex items-center justify-center shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:scale-110 active:scale-95 transition-all duration-300 z-50 group">
+<span class="material-symbols-outlined text-3xl font-bold group-hover:rotate-90 transition-transform duration-500">add</span>
+<div class="absolute inset-0 rounded-full border-4 border-white/20 animate-ping opacity-20 pointer-events-none"></div>
+</button>
+<!-- Footer -->
+<footer class="w-full max-w-7xl mx-auto px-container-padding flex flex-col md:flex-row justify-between items-center gap-stack-sm pb-12 opacity-50">
+<div class="flex flex-col md:flex-row items-center gap-8">
+<span class="font-label-md text-label-md uppercase tracking-widest text-primary">Legacy OS</span>
+<div class="flex gap-6">
+<a class="font-label-sm text-label-sm text-on-surface-muted hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="font-label-sm text-label-sm text-on-surface-muted hover:text-primary transition-colors" href="#">Archive Protocol</a>
+<a class="font-label-sm text-label-sm text-on-surface-muted hover:text-primary transition-colors" href="#">Terms</a>
+</div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-muted">© 2024 Legacy OS. All rights reserved.</p>
+</footer>
+<script>
+        // Micro-interaction: Mouse parallax for spatial feel
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.glass-card');
+            const x = (e.clientX - window.innerWidth / 2) / 50;
+            const y = (e.clientY - window.innerHeight / 2) / 50;
+
+            cards.forEach((card, index) => {
+                const depth = (index % 3 + 1) * 0.5;
+                card.style.transform = `translate(${x * depth}px, ${y * depth}px) rotateX(${-y * 0.2}deg) rotateY(${x * 0.2}deg)`;
+            });
+        });
+
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('header');
+            if (window.scrollY > 20) {
+                nav.classList.add('scale-95', 'opacity-90');
+            } else {
+                nav.classList.remove('scale-95', 'opacity-90');
+            }
+        });
+    </script>
+</body></html>

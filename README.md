@@ -14,93 +14,96 @@ A premium, production-quality full-stack web application for preserving photos, 
 ## 🌟 Features
 
 ### 📸 Photo Gallery
-- **Masonry Layout**: Beautiful grid layout with hover effects
-- **Smart Search**: Filter photos by title
-- **Cloudinary Integration**: Cloud storage for unlimited photos
-- **Fast Loading**: Optimized image delivery
+- **Masonry Layout** – Beautiful grid layout with hover effects
+- **Smart Search** – Filter photos by title
+- **Cloudinary Integration** – Cloud storage for unlimited photos
+- **Fast Loading** – Optimized image delivery
 
 ### 🎬 Video Management
-- **Video Upload**: Store videos with automatic thumbnail generation
-- **Playback**: Built-in video player
-- **Organization**: Search and organize videos by date
-- **Streaming**: Cloud-based video delivery
+- **Video Upload** – Store videos with automatic thumbnail generation
+- **Playback** – Built-in video player
+- **Organization** – Search and organize videos by date
+- **Streaming** – Cloud-based video delivery
 
 ### 📔 Rich Journals
-- **Rich Text Editor**: Write with formatting, links, images
-- **Mood Tracking**: Attach emotional context to entries
-- **Search**: Full-text search across journal entries
-- **Edit & Delete**: Manage entries anytime
+- **Rich Text Editor** – Write with formatting, links, images
+- **Mood Tracking** – Attach emotional context to entries
+- **Search** – Full-text search across journal entries
+- **Edit & Delete** – Manage entries anytime
 
 ### 🎯 Milestones
-- **Track Achievements**: Education, Career, Personal, Travel, Achievement
-- **Timeline View**: Visualize life events
-- **Categorization**: Organize by milestone type
-- **Date Tracking**: Remember important dates
+- **Track Achievements** – Education, Career, Personal, Travel, Achievement
+- **Timeline View** – Visualize life events
+- **Categorization** – Organize by milestone type
+- **Date Tracking** – Remember important dates
 
 ### 📊 Interactive Timeline
-- **Chronological View**: See all memories organized by time
-- **Year Filtering**: Browse by year
-- **Combined Feed**: Photos, videos, journals, milestones in one view
-- **Animated Scroll**: Beautiful scroll animations
+- **Chronological View** – See all memories organized by time
+- **Year Filtering** – Browse by year
+- **Combined Feed** – Photos, videos, journals, milestones in one view
+- **Animated Scroll** – Beautiful scroll animations
 
 ### 🎨 Dashboard Analytics
-- **Memory Statistics**: Total memories, photos, videos, journals
-- **Recent Activity**: Latest additions
-- **Insights**: Memory patterns and trends
-- **Quick Actions**: Fast access to features
+- **Memory Statistics** – Total memories, photos, videos, journals
+- **Recent Activity** – Latest additions
+- **Insights** – Memory patterns and trends
+- **Quick Actions** – Fast access to features
 
 ### 🔐 Security
-- **JWT Authentication**: Secure token-based auth
-- **Password Hashing**: bcrypt encryption
-- **User Isolation**: Users only see their data
-- **HTTPS Ready**: Production-ready SSL/TLS support
+- **JWT Authentication** – Secure token-based auth
+- **Password Hashing** – bcrypt encryption
+- **User Isolation** – Users only see their data
+- **HTTPS Ready** – Production-ready SSL/TLS support
 
 ---
 
 ## 🎨 Design Highlights
 
 ### Modern UI/UX
-- **Glassmorphism**: Frosted glass effect cards
-- **Smooth Animations**: Framer Motion transitions
-- **Dark Mode**: Premium dark theme
-- **Responsive Design**: Mobile-first approach
-- **Micro Interactions**: Subtle hover effects
+- **Glassmorphism** – Frosted glass effect cards
+- **Smooth Animations** – Framer Motion transitions
+- **Dark Mode** – Premium dark theme
+- **Responsive Design** – Mobile-first approach
+- **Micro Interactions** – Subtle hover effects
 
 ### Color Palette
-- **Primary**: `#0B1020`
-- **Secondary**: `#121A30`
-- **Accent**: `#6D5DFC` (Purple)
-- **Secondary Accent**: `#00D4FF` (Cyan)
-- **Text**: `#FFFFFF`
-- **Muted**: `#A0AEC0`
+
+| Role | Color |
+|---|---|
+| Primary | `#0B1020` |
+| Secondary | `#121A30` |
+| Accent | `#6D5DFC` (Purple) |
+| Secondary Accent | `#00D4FF` (Cyan) |
+| Text | `#FFFFFF` |
+| Muted | `#A0AEC0` |
 
 ---
 
 ## 🛠 Tech Stack
 
 ### Frontend
-- **Next.js 14** - React framework
-- **Tailwind CSS** - Utility-first CSS
-- **Framer Motion** - Animation library
-- **Axios** - HTTP client
-- **Lucide React** - Icon library
-- **React Hot Toast** - Notifications
-- **React Quill** - Rich text editor
+- **Next.js 14** – React framework
+- **Tailwind CSS** – Utility-first CSS
+- **Framer Motion** – Animation library
+- **Axios** – HTTP client
+- **Lucide React** – Icon library
+- **React Hot Toast** – Notifications
+- **React Quill** – Rich text editor
 
 ### Backend
-- **Express.js** - Web framework
-- **Node.js** - JavaScript runtime
-- **Sequelize** - ORM
-- **JWT** - Authentication
-- **bcryptjs** - Password hashing
-- **CORS** - Cross-origin support
+- **Express.js** – Web framework
+- **Node.js** – JavaScript runtime
+- **Sequelize** – ORM
+- **JWT** – Authentication
+- **bcryptjs** – Password hashing
+- **CORS** – Cross-origin support
 
 ### Database
-- **MySQL** - Relational database
-- **Sequelize ORM** - Database abstraction
+- **MySQL** – Relational database
+- **Sequelize ORM** – Database abstraction
 
 ### Storage
-- **Cloudinary** - Image/video CDN
+- **Cloudinary** – Image/video CDN
 
 ---
 
@@ -211,50 +214,64 @@ See [SETUP_GUIDE.md](./SETUP_GUIDE.md) for detailed instructions.
 
 ## 📚 Documentation
 
-- **[SETUP_GUIDE.md](./SETUP_GUIDE.md)** - Installation and configuration
-- **[API_REFERENCE.md](./API_REFERENCE.md)** - Complete API documentation
-- **[DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)** - Production deployment
+- **[SETUP_GUIDE.md](./SETUP_GUIDE.md)** – Installation and configuration
+- **[API_REFERENCE.md](./API_REFERENCE.md)** – Complete API documentation
+- **[DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)** – Production deployment
 
 ---
 
 ## 🔌 API Endpoints
 
 ### Authentication
-- `POST /api/auth/register` - Create account
-- `POST /api/auth/login` - Login
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/auth/register` | Create account |
+| POST | `/api/auth/login` | Login |
 
 ### Photos
-- `GET /api/photos` - Get all photos
-- `POST /api/photos` - Upload photo
-- `DELETE /api/photos/{id}` - Delete photo
-- `GET /api/photos/search?q=query` - Search photos
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/photos` | Get all photos |
+| POST | `/api/photos` | Upload photo |
+| DELETE | `/api/photos/{id}` | Delete photo |
+| GET | `/api/photos/search?q=query` | Search photos |
 
 ### Videos
-- `GET /api/videos` - Get all videos
-- `POST /api/videos` - Upload video
-- `DELETE /api/videos/{id}` - Delete video
-- `GET /api/videos/search?q=query` - Search videos
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/videos` | Get all videos |
+| POST | `/api/videos` | Upload video |
+| DELETE | `/api/videos/{id}` | Delete video |
+| GET | `/api/videos/search?q=query` | Search videos |
 
 ### Journals
-- `GET /api/journals` - Get all journals
-- `POST /api/journals` - Create journal
-- `PUT /api/journals/{id}` - Update journal
-- `DELETE /api/journals/{id}` - Delete journal
-- `GET /api/journals/search?q=query` - Search journals
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/journals` | Get all journals |
+| POST | `/api/journals` | Create journal |
+| PUT | `/api/journals/{id}` | Update journal |
+| DELETE | `/api/journals/{id}` | Delete journal |
+| GET | `/api/journals/search?q=query` | Search journals |
 
 ### Milestones
-- `GET /api/milestones` - Get all milestones
-- `POST /api/milestones` - Create milestone
-- `PUT /api/milestones/{id}` - Update milestone
-- `DELETE /api/milestones/{id}` - Delete milestone
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/milestones` | Get all milestones |
+| POST | `/api/milestones` | Create milestone |
+| PUT | `/api/milestones/{id}` | Update milestone |
+| DELETE | `/api/milestones/{id}` | Delete milestone |
 
 ### Timeline
-- `GET /api/timeline` - Get all timeline events
-- `GET /api/timeline/{year}` - Get timeline by year
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/timeline` | Get all timeline events |
+| GET | `/api/timeline/{year}` | Get timeline by year |
 
 ### User
-- `GET /api/users/profile` - Get user profile
-- `PUT /api/users/profile` - Update profile
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/users/profile` | Get user profile |
+| PUT | `/api/users/profile` | Update profile |
 
 See [API_REFERENCE.md](./API_REFERENCE.md) for complete documentation.
 
@@ -315,12 +332,12 @@ See [API_REFERENCE.md](./API_REFERENCE.md) for complete documentation.
 
 ## 🔒 Security Features
 
-- **Password Security**: bcrypt hashing with salt rounds
-- **JWT Tokens**: Secure authentication tokens
-- **User Isolation**: Data segregation per user
-- **Input Validation**: All inputs validated
-- **CORS Protection**: Cross-origin request handling
-- **Rate Limiting**: Request throttling
+- **Password Security** – bcrypt hashing with salt rounds
+- **JWT Tokens** – Secure authentication tokens
+- **User Isolation** – Data segregation per user
+- **Input Validation** – All inputs validated
+- **CORS Protection** – Cross-origin request handling
+- **Rate Limiting** – Request throttling
 
 ---
 
@@ -398,20 +415,20 @@ SELECT * FROM Users LIMIT 5;
 
 ## 🐛 Troubleshooting
 
-### Database Connection Failed
+**Database Connection Failed**
 - Ensure MySQL is running
 - Check credentials in `.env`
 - Verify database exists
 
-### Port Already in Use
+**Port Already in Use**
 - Change port in `.env`
 - Or kill existing process
 
-### CORS Errors
+**CORS Errors**
 - Verify backend is running
 - Check `NEXT_PUBLIC_API_URL`
 
-### Cloudinary Upload Fails
+**Cloudinary Upload Fails**
 - Verify cloud name and credentials
 - Check upload preset exists
 
@@ -419,14 +436,13 @@ SELECT * FROM Users LIMIT 5;
 
 ## 📄 License
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License – see [LICENSE](LICENSE) for details.
 
 ---
 
 ## 👨‍💻 Author
 
 **Legacy OS Development Team**
-
 - GitHub: [your-github]
 - Email: [your-email]
 - Portfolio: [your-portfolio]
@@ -459,14 +475,12 @@ Give a ⭐ if you love Legacy OS!
 
 ## 📞 Contact
 
-- **Questions?** Email: info@legacyos.com
-- **Bug Report**: bugs@legacyos.com
-- **Feature Request**: features@legacyos.com
+- **Questions?** info@legacyos.com
+- **Bug Report:** bugs@legacyos.com
+- **Feature Request:** features@legacyos.com
 
 ---
 
 **Built with ❤️ for preserving memories**
 
 **© 2025 Legacy OS. All rights reserved.**
-#   M e m o r y - O S  
- 

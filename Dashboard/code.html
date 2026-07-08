@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Legacy OS - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "primary-fixed-dim": "#c6c6c7",
+                "surface-container-low": "#1b1b1b",
+                "on-primary-fixed": "#1a1c1c",
+                "on-primary": "#2f3131",
+                "surface-bright": "#393939",
+                "on-secondary": "#313030",
+                "error": "#ffb4ab",
+                "on-error": "#690005",
+                "primary": "#ffffff",
+                "on-secondary-container": "#b7b5b4",
+                "secondary": "#c8c6c5",
+                "inverse-primary": "#5d5f5f",
+                "tertiary-container": "#e5e2e1",
+                "outline": "#8e9192",
+                "on-surface": "#e2e2e2",
+                "on-tertiary-container": "#656464",
+                "on-error-container": "#ffdad6",
+                "on-tertiary-fixed-variant": "#474646",
+                "inverse-surface": "#e2e2e2",
+                "surface-tint": "#c6c6c7",
+                "surface-variant": "#353535",
+                "secondary-fixed": "#e5e2e1",
+                "secondary-container": "#474746",
+                "on-background": "#e2e2e2",
+                "surface-container-lowest": "#0e0e0e",
+                "on-tertiary-fixed": "#1c1b1b",
+                "surface-dim": "#131313",
+                "on-secondary-fixed-variant": "#474746",
+                "primary-fixed": "#e2e2e2",
+                "on-primary-fixed-variant": "#454747",
+                "secondary-fixed-dim": "#c8c6c5",
+                "surface": "#131313",
+                "on-tertiary": "#313030",
+                "on-secondary-fixed": "#1c1b1b",
+                "error-container": "#93000a",
+                "background": "#000000",
+                "inverse-on-surface": "#303030",
+                "on-surface-variant": "#c4c7c8",
+                "surface-container-high": "#2a2a2a",
+                "outline-variant": "#444748",
+                "primary-container": "#e2e2e2",
+                "surface-container-highest": "#353535",
+                "tertiary-fixed": "#e5e2e1",
+                "tertiary": "#ffffff",
+                "tertiary-fixed-dim": "#c9c6c5",
+                "surface-container": "#1f1f1f",
+                "on-primary-container": "#636565"
+            },
+            "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "unit": "8px",
+                "stack-sm": "12px",
+                "gutter": "24px",
+                "container-padding": "40px",
+                "stack-md": "24px",
+                "stack-lg": "48px"
+            },
+            "fontFamily": {
+                "body-md": ["Geist", "sans-serif"],
+                "headline-lg": ["Geist", "sans-serif"],
+                "display-lg": ["Geist", "sans-serif"],
+                "label-sm": ["Geist", "sans-serif"],
+                "headline-lg-mobile": ["Geist", "sans-serif"],
+                "label-md": ["Geist", "sans-serif"],
+                "body-lg": ["Geist", "sans-serif"],
+                "headline-md": ["Geist", "sans-serif"]
+            },
+            "fontSize": {
+                "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Geist', sans-serif;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .glass-panel:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.06);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .heatmap-cell {
+            aspect-ratio: 1;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="dark antialiased">
+<!-- Spatial Background -->
+<div class="fixed inset-0 z-0 pointer-events-none">
+
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black"></div>
+</div>
+<!-- Floating TopNavBar (Shared Component Execution) -->
+<header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-3 rounded-full mt-6 mx-auto w-[90%] max-w-6xl bg-white/10 backdrop-blur-[40px] border border-white/40 shadow-2xl transition-all duration-300">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">Legacy OS</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="#">Timeline</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="#">Archives</a>
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary transition-all duration-300 hover:scale-105" href="#">The Vault</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="#">Sensory</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="#">Synthesis</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-sm">search</span>
+<input class="bg-white/5 border border-white/10 rounded-full pl-10 pr-4 py-1.5 text-label-md focus:outline-none focus:border-white/40 w-48 transition-all duration-500 focus:w-64" placeholder="Search archives..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary-fixed font-label-md px-6 py-2 rounded-full hover:scale-105 transition-transform active:scale-95 duration-150">Get Access</button>
+</div>
+</header>
+<main class="relative z-10 pt-32 pb-24 px-container-padding max-w-7xl mx-auto">
+<!-- Hero Header -->
+<section class="mb-stack-lg animate-in fade-in slide-in-from-bottom-4 duration-1000">
+<h1 class="font-display-lg text-display-lg tracking-tight mb-2">Good Evening, Risikesh!</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant/70">Your memories are safe and growing.</p>
+</section>
+<!-- Stats Grid (6 Compact Cards) -->
+<section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-gutter mb-stack-lg">
+<div class="glass-panel p-6 rounded-lg text-center flex flex-col items-center justify-center space-y-2 hover:scale-[1.02]">
+<span class="material-symbols-outlined text-on-surface-variant/60" style="font-variation-settings: 'opsz' 32;">image</span>
+<h3 class="font-display-lg text-headline-md font-bold">1,248</h3>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Photos</span>
+</div>
+<div class="glass-panel p-6 rounded-lg text-center flex flex-col items-center justify-center space-y-2 hover:scale-[1.02]">
+<span class="material-symbols-outlined text-on-surface-variant/60">videocam</span>
+<h3 class="font-display-lg text-headline-md font-bold">53</h3>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Videos</span>
+</div>
+<div class="glass-panel p-6 rounded-lg text-center flex flex-col items-center justify-center space-y-2 hover:scale-[1.02]">
+<span class="material-symbols-outlined text-on-surface-variant/60">edit_note</span>
+<h3 class="font-display-lg text-headline-md font-bold">102</h3>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Journals</span>
+</div>
+<div class="glass-panel p-6 rounded-lg text-center flex flex-col items-center justify-center space-y-2 hover:scale-[1.02]">
+<span class="material-symbols-outlined text-on-surface-variant/60">military_tech</span>
+<h3 class="font-display-lg text-headline-md font-bold">74</h3>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Milestones</span>
+</div>
+<div class="glass-panel p-6 rounded-lg text-center flex flex-col items-center justify-center space-y-2 hover:scale-[1.02]">
+<span class="material-symbols-outlined text-on-surface-variant/60">folder_zip</span>
+<h3 class="font-display-lg text-headline-md font-bold">18</h3>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Collections</span>
+</div>
+<div class="glass-panel p-6 rounded-lg text-center flex flex-col items-center justify-center space-y-2 hover:scale-[1.02] border-primary/20">
+<span class="material-symbols-outlined text-primary shadow-[0_0_10px_rgba(255,255,255,0.4)]">local_fire_department</span>
+<h3 class="font-display-lg text-headline-md font-bold">12</h3>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Day Streak</span>
+</div>
+</section>
+<!-- Main Bento Grid -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Featured Memory (Left Large) -->
+<div class="col-span-12 lg:col-span-8 space-y-gutter">
+<div class="glass-panel rounded-xl overflow-hidden group">
+<div class="relative h-[480px]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale" data-alt="A cinematic, ultra-high-definition monochrome photograph of a lone man sitting on a jagged mountain peak at sunset. The lighting is dramatic, with high contrast between deep shadows and bright highlights from the setting sun. The atmosphere is serene and introspective, perfectly aligned with a premium, minimalist digital life journal aesthetic. Subtle grain and a soft glow enhance the ethereal, high-end visual style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmh86kodyZzPaZnA63uqZzxVHvC_OCR3Xe4zJCwW9GfP-RTf0Ah2F0tcEGODq-zek1W1_owAIMJTfqZe4BkTwo7K00pTDvcSjZMbFARGie1tiCSmTHq2eCudQB2__8Qs7tNcLC2Dr35UWEYo4rgFHmYLgzdQm_cxpBKtPHKRhbLGgYIRqUqu00T09vBLNIt4S73PxuDyyBdLobeNdmQ2NY62sXla3051pMh5zrtl5IXQKdbSaG2R8aahmxpQKwfL1qNMsie47b9jRr"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-10 w-full flex justify-between items-end">
+<div class="max-w-xl">
+<span class="bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-label-sm text-white mb-4 inline-block border border-white/20">On This Day: 3 Years Ago</span>
+<h2 class="font-headline-lg text-headline-lg text-white mb-4">Summit of Solitude</h2>
+<p class="font-body-md text-body-md text-white/70 line-clamp-2">"The sunset view from the hilltop was absolutely breathtaking. One of the most peaceful moments I've experienced in a long time. The climb was hard, but the silence at the top was worth every step."</p>
+</div>
+<button class="bg-white text-black p-4 rounded-full flex items-center justify-center hover:scale-110 transition-transform active:scale-95">
+<span class="material-symbols-outlined">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Secondary Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="glass-panel p-8 rounded-xl flex flex-col justify-between h-[300px]">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">Memory Activity</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">+10% increase vs last month</p>
+</div>
+<span class="material-symbols-outlined text-primary/40">query_stats</span>
+</div>
+<!-- Grayscale Heatmap -->
+<div class="grid grid-cols-11 gap-2 mt-4">
+<!-- JS loop would go here, manually adding cells for design -->
+<div class="heatmap-cell bg-white/5"></div>
+<div class="heatmap-cell bg-white/20"></div>
+<div class="heatmap-cell bg-white/5"></div>
+<div class="heatmap-cell bg-white/40"></div>
+<div class="heatmap-cell bg-white/60"></div>
+<div class="heatmap-cell bg-white/10"></div>
+<div class="heatmap-cell bg-white/5"></div>
+<div class="heatmap-cell bg-white/20"></div>
+<div class="heatmap-cell bg-white/80"></div>
+<div class="heatmap-cell bg-white/10"></div>
+<div class="heatmap-cell bg-white/5"></div>
+<div class="heatmap-cell bg-white/20"></div>
+<div class="heatmap-cell bg-white/5"></div>
+<div class="heatmap-cell bg-white/10"></div>
+<div class="heatmap-cell bg-white/5"></div>
+<div class="heatmap-cell bg-white/20"></div>
+<div class="heatmap-cell bg-white/40"></div>
+<div class="heatmap-cell bg-white/5"></div>
+<div class="heatmap-cell bg-white/10"></div>
+<div class="heatmap-cell bg-white/5"></div>
+<div class="heatmap-cell bg-white/5"></div>
+<div class="heatmap-cell bg-white/20"></div>
+<div class="heatmap-cell bg-white/5"></div>
+<div class="heatmap-cell bg-white/40"></div>
+<div class="heatmap-cell bg-white/60"></div>
+<div class="heatmap-cell bg-white/10"></div>
+<div class="heatmap-cell bg-white/5"></div>
+<div class="heatmap-cell bg-white/20"></div>
+<div class="heatmap-cell bg-white/80"></div>
+<div class="heatmap-cell bg-white/10"></div>
+<div class="heatmap-cell bg-white/5"></div>
+<div class="heatmap-cell bg-white/20"></div>
+<div class="heatmap-cell bg-white/5"></div>
+</div>
+<div class="flex justify-between items-center text-label-sm text-on-surface-variant/40 mt-4">
+<span>Less</span>
+<div class="flex gap-1">
+<div class="w-3 h-3 bg-white/5 rounded-sm"></div>
+<div class="w-3 h-3 bg-white/20 rounded-sm"></div>
+<div class="w-3 h-3 bg-white/50 rounded-sm"></div>
+<div class="w-3 h-3 bg-white rounded-sm"></div>
+</div>
+<span>More</span>
+</div>
+</div>
+<div class="glass-panel p-8 rounded-xl h-[300px] flex flex-col items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 opacity-10">
+
+</div>
+<div class="relative text-center z-10">
+<h3 class="font-headline-md text-headline-md mb-2">The Vault</h3>
+<p class="font-body-md text-body-md text-on-surface-variant/70 mb-6">4 new sensory matches found in your Synthesis stream.</p>
+<button class="px-8 py-3 bg-white/5 border border-white/20 rounded-full hover:bg-white/10 transition-colors font-label-md">Explore Now</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (Sidebar-esque list) -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<div class="glass-panel p-8 rounded-xl h-full min-h-[600px] flex flex-col">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-headline-md text-headline-md">Recent Memories</h3>
+<button class="text-label-md text-primary/60 hover:text-primary transition-colors underline decoration-primary/20 underline-offset-4">See all</button>
+</div>
+<div class="space-y-6 flex-grow custom-scrollbar overflow-y-auto pr-2">
+<!-- Memory Item -->
+<div class="group flex gap-4 items-center p-3 rounded-lg hover:bg-white/5 transition-all duration-300 cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border border-white/10">
+<img class="w-full h-full object-cover filter grayscale" data-alt="A minimalist monochrome photograph of a calm lake with soft ripples under a overcast sky. High-key lighting with a focus on textures and subtle tonal shifts. Part of a luxury digital life journal collection." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0nhtV7eNyJn7ZYQ11g_SG2RzqWg3Et8k8Dy4YT5PEkwqwg0VXztAk_cnipOOsmF39tl_u3hMR-ALJgrlifq-FhJUTpruDRdx8dN7rtffxdrsVLYobwsQVBpUH7rbTrNHJ8tpJrh38KXnfFHAkJYI9Md7gha5cnQcqt08v-t9cAgJwjckdGwunEY_cgbn20n9dPYZS25W9toygf3JRrr4milmYkHaXo7mu5xBYXFr6Vn7wFXYxEgAxAnmPkCAm7nLljCyeIgA596_v"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-sm text-label-sm text-on-surface-variant/60 mb-1">June 12, 2025</p>
+<h4 class="font-body-md font-bold text-on-surface group-hover:text-primary transition-colors">Peaceful Morning at Pondicherry</h4>
+<p class="font-label-md text-label-md text-on-surface-variant/40">Location: Pondicherry, India</p>
+</div>
+</div>
+<!-- Memory Item -->
+<div class="group flex gap-4 items-center p-3 rounded-lg hover:bg-white/5 transition-all duration-300 cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border border-white/10">
+<img class="w-full h-full object-cover filter grayscale" data-alt="A close-up monochrome artistic shot of a warm campfire at night. Sparks fly into the dark void above. High-contrast lighting emphasizing the textures of the burning logs. Premium aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC737FuzWwyW1Ba5d47TNsggZ22kSEGXrB0yOWz_IwHLFwcRI4xwckYABIDPgxdpG1LCX3gQdp8WdBz2rVrzvxKOnIRh1RCfPexzH8otv1LAW17fSK3hsCKdAndc8jV4YMs_BY9SKWDcFShk92DNMa9-79Lx8ldR1EiNLiJi1KISer07NStgwnihKOLg6OQJtD1-aQSrWA31_9KyUQXzzYeo_xRlKPEcr98uDbL6n750woS9pJdYLN7lW7qq4NPZO37JInQzanqU2Qm"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-sm text-label-sm text-on-surface-variant/60 mb-1">April 25, 2025</p>
+<h4 class="font-body-md font-bold text-on-surface group-hover:text-primary transition-colors">Campfire Night Stories</h4>
+<p class="font-label-md text-label-md text-on-surface-variant/40">Location: Coorg, Karnataka</p>
+</div>
+</div>
+<!-- Memory Item -->
+<div class="group flex gap-4 items-center p-3 rounded-lg hover:bg-white/5 transition-all duration-300 cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border border-white/10">
+<img class="w-full h-full object-cover filter grayscale" data-alt="A sharp monochrome macro shot of a golden retriever dog looking directly at the camera. Soft bokeh background. Every detail of the fur is visible. Introspective and high-end photographic style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd1PFK_6IE_V9OSqAcuc8dUseiGymtYo8crFVMt-moSgV9AGdoQxxyYS_pp7ZqYD5Yl1D2TIfg-6wHnU7jnXQ1gZ0sov5imK7d7yUPNuAg1-Czb1YzAa5lNyIlek-FEFeYcUraHWhIMypI-46bu42ObDGQ_bxandfSDS3wYtTU9SJ_McO2rYMbfTtNifru_R2snAMGhmHDgOJDrl_pPPRAQ0kLAiujLr9oaa8Q2fVaX3Mhd7ljU5iVxHvroRUvaNPgUaSHQedDvY-u"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-sm text-label-sm text-on-surface-variant/60 mb-1">Jan 18, 2025</p>
+<h4 class="font-body-md font-bold text-on-surface group-hover:text-primary transition-colors">My Puppy Bruno</h4>
+<p class="font-label-md text-label-md text-on-surface-variant/40">Category: Pets</p>
+</div>
+</div>
+<!-- Memory Item -->
+<div class="group flex gap-4 items-center p-3 rounded-lg hover:bg-white/5 transition-all duration-300 cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border border-white/10">
+<img class="w-full h-full object-cover filter grayscale" data-alt="A long exposure monochrome shot of a busy highway at night, showing light trails from cars. Moody and cinematic with deep blacks and stark white lines. Modern high-end look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwsnzR5DMiauFMY7f6taHgSi46LSt10g2rzkDT5DPpvoIT_jVx0OfulYxUwWsOGb1Zf4PpPENqp2crLxy7nTS4co3VCZ4BhkCZLgMMG4-UFtorNZ8jCjma4OA4FiOp_q8ImqaTlUyRz8oEteND_DXIuLqoU7rbKWYzbyrliSSK0g3xRXOLqKePF4Q7ob1WAnB90NlebzYJG86nqVWkxOodsay1WD5YSdwyUp_GrIABKyM-QrkW3jDls1oawT2iqkbLheAhlmp05Cui"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-sm text-label-sm text-on-surface-variant/60 mb-1">Feb 14, 2025</p>
+<h4 class="font-body-md font-bold text-on-surface group-hover:text-primary transition-colors">Coastal Road Trip</h4>
+<p class="font-label-md text-label-md text-on-surface-variant/40">Location: Wayanad, Kerala</p>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-white/10">
+<button class="w-full py-4 bg-primary text-on-primary-fixed rounded-full font-headline-md flex items-center justify-center gap-2 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all">
+<span class="material-symbols-outlined">add</span>
+                            Create New Memory
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component Execution) -->
+<footer class="w-full py-16 px-container-padding flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-bright/30 backdrop-blur-[40px] border-t border-white/20">
+<div class="flex flex-col items-center md:items-start gap-4">
+<span class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">Legacy OS</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant/80">© 2026 Legacy OS. All rights reserved. Your life, beautifully remembered.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-label-sm text-label-sm text-on-surface-variant/80 hover:text-primary transition-colors duration-300" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant/80 hover:text-primary transition-colors duration-300" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant/80 hover:text-primary transition-colors duration-300" href="#">Digital Legacy Act</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant/80 hover:text-primary transition-colors duration-300" href="#">Help Center</a>
+</div>
+</footer>
+<!-- FAB for quick action (Conditional Suppression applied: Only on Dashboard) -->
+<div class="fixed bottom-8 right-8 z-50">
+<button class="w-16 h-16 bg-white text-black rounded-full shadow-2xl flex items-center justify-center group hover:scale-110 transition-all duration-300" id="mainFab">
+<span class="material-symbols-outlined transition-transform duration-300 group-hover:rotate-90">add</span>
+</button>
+</div>
+<script>
+        // Simple micro-interaction for the FAB
+        const fab = document.getElementById('mainFab');
+        fab.addEventListener('click', () => {
+            fab.classList.add('scale-90');
+            setTimeout(() => fab.classList.remove('scale-90'), 150);
+        });
+
+        // Add glass glare effect to cards on mouse move
+        const glassCards = document.querySelectorAll('.glass-panel');
+        glassCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>

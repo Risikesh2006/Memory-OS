@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f0f2f8;
+  --card: #ffffff;
+  --primary: #7c3aed;
+  --primary-light: #ede9fe;
+  --text: #1a1a2e;
+  --text-muted: #6b7280;
+  --radius: 16px;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+@layer components {
+  .legacy-card {
+    @apply rounded-2xl bg-white border border-slate-100 shadow-sm;
+    box-shadow: var(--shadow);
+  }
+
+  .legacy-micro-card {
+    @apply rounded-2xl bg-white border border-slate-100 shadow-sm;
+  }
+
+  .legacy-pill {
+    @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors;
+  }
+
+  .legacy-pill-outline {
+    @apply inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50;
+  }
+
+  .legacy-pill-black {
+    @apply inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-800;
+  }
+}

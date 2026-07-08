@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Legacy OS - Open World Timeline</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Geist for the Aetheric Morphism theme -->
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100;300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'sans-serif'],
+          },
+          colors: {
+            surface: '#131313',
+            'surface-dim': '#0e0e0e',
+            'surface-bright': '#393939',
+            'surface-low': '#1b1b1b',
+          },
+          backdropBlur: {
+            'xs': '2px',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="glassmorphism">
+    .glass-card {
+      background: rgba(27, 27, 27, 0.4);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+    }
+    .glass-panel {
+      background: rgba(19, 19, 19, 0.7);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .glass-search {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .text-glow {
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+  </style>
+<style data-purpose="layout-animations">
+    /* Subtle floating animation for cards */
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(var(--rot)); }
+      50% { transform: translateY(-10px) rotate(var(--rot)); }
+      100% { transform: translateY(0px) rotate(var(--rot)); }
+    }
+    .floating-card {
+      animation: float 6s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-black text-white font-sans selection:bg-white selection:text-black overflow-hidden h-screen w-screen">
+<!-- BEGIN: TopNavigation -->
+<nav class="fixed top-0 left-0 right-0 h-16 flex items-center justify-between px-6 z-50 glass-panel border-b border-white/5">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center">
+<div class="w-2 h-2 bg-white rounded-full"></div>
+</div>
+<span class="font-bold tracking-widest text-sm uppercase">Legacy OS</span>
+</div>
+<div class="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-400">
+<a class="hover:text-white transition-colors" href="#">Home</a>
+<a class="text-white border-b border-white pb-1" href="#">Timeline</a>
+<a class="hover:text-white transition-colors" href="#">Journal</a>
+<a class="hover:text-white transition-colors" href="#">Collections</a>
+<a class="hover:text-white transition-colors" href="#">Memories</a>
+<a class="hover:text-white transition-colors" href="#">AI Assistant</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative flex items-center">
+<input class="glass-search rounded-full py-1.5 pl-4 pr-10 text-sm focus:outline-none w-64 border-white/10" placeholder="Search by year or time..." type="text"/>
+<svg class="h-4 w-4 absolute right-4 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<button class="p-2 rounded-full hover:bg-white/10 transition-colors">
+<svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white/20">
+<img alt="User Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKS2t7ugeqZPZ92zSEatcmFZN-a0akAzh4k2IKxYhRKjb1Ew4R-XVDIfF01BGJ3WlOm8uDVAlZ0F0vhVVRo8gCszr9eiKxfsCDWYx7TUei9t0XuZyOpZOUFT9_s3CAYlbsd7J5KPbi2UN8AqiZVyEKU0nvkysdoEHiX79DMOXeMG8UMMBNUcGWdpWZdUuzic9SZQDgzcAqGuV61Tx8onfLKMfr87d_aKq0x__TNG1m85Rf-jdNs9gLmHpGIVe_QirjrGJbmpF0SyXY"/>
+</div>
+</div>
+</nav>
+<!-- END: TopNavigation -->
+<!-- BEGIN: LeftSidebar -->
+<aside class="fixed left-0 top-16 bottom-0 w-64 glass-panel z-40 p-6 overflow-y-auto hidden xl:block">
+<div class="space-y-8 text-[11px] leading-relaxed">
+<!-- Section: Feature Summary -->
+<section>
+<h2 class="text-xs font-bold uppercase tracking-widest mb-4">Timeline – Open World Concept</h2>
+<p class="text-gray-400 mb-4">An infinite open world timeline where your memories float freely in space.</p>
+<ul class="space-y-2">
+<li class="flex items-center gap-2"><svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="3"></path></svg> Drag cards anywhere</li>
+<li class="flex items-center gap-2"><svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="3"></path></svg> Move freely in 2D space</li>
+<li class="flex items-center gap-2"><svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="3"></path></svg> Smooth physics &amp; collisions</li>
+<li class="flex items-center gap-2"><svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="3"></path></svg> Zoom in / out</li>
+<li class="flex items-center gap-2"><svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="3"></path></svg> Search by year or time</li>
+<li class="flex items-center gap-2"><svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="3"></path></svg> Double click to enlarge</li>
+<li class="flex items-center gap-2"><svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="3"></path></svg> Glassmorphism cards</li>
+<li class="flex items-center gap-2"><svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="3"></path></svg> Organize into collections</li>
+</ul>
+</section>
+<!-- Section: How It Works -->
+<section>
+<h2 class="text-xs font-bold uppercase tracking-widest mb-4">How It Works</h2>
+<ol class="space-y-2 text-gray-400">
+<li>1. Memories appear as floating glass cards</li>
+<li>2. Drag cards anywhere you like</li>
+<li>3. Cards have soft collisions</li>
+<li>4. Zoom and move around freely</li>
+<li>5. Search any year or time to focus</li>
+<li>6. Double click a card to see full details</li>
+<li>7. Create collections and group memories</li>
+</ol>
+</section>
+<!-- Section: Card Information -->
+<section>
+<h2 class="text-xs font-bold uppercase tracking-widest mb-4">Card Information</h2>
+<ul class="space-y-1 list-disc list-inside text-gray-400">
+<li>Thumbnail (image / video)</li>
+<li>Title</li>
+<li>Date &amp; Time</li>
+<li>Location</li>
+<li>Short Note / Description</li>
+<li>Collection Tag</li>
+</ul>
+</section>
+<!-- Section: Interactions -->
+<section>
+<h2 class="text-xs font-bold uppercase tracking-widest mb-4">Interactions</h2>
+<div class="space-y-2 text-gray-400">
+<p><span class="text-white">Drag</span> – Move card</p>
+<p><span class="text-white">Click</span> – Select card</p>
+<p><span class="text-white">Double Click</span> – Enlarge card</p>
+<p><span class="text-white">Scroll</span> – Zoom in/out</p>
+<p><span class="text-white">Right Click</span> – More options</p>
+</div>
+</section>
+<!-- Section: Open World Features -->
+<section>
+<h2 class="text-xs font-bold uppercase tracking-widest mb-4">Open World Features</h2>
+<ul class="space-y-2 text-gray-400">
+<li>• Infinite canvas</li>
+<li>• Smooth camera movement</li>
+<li>• Physics based collisions</li>
+<li>• Free placement</li>
+<li>• Living floating experience</li>
+</ul>
+</section>
+</div>
+</aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainCanvasArea -->
+<main class="relative h-screen w-screen overflow-hidden bg-[radial-gradient(circle_at_center,_#1a1a1a_0%,_#000000_100%)]">
+<!-- Star background effect using small dots -->
+<div class="absolute inset-0 z-0 pointer-events-none opacity-20" data-purpose="stars-layer">
+<div class="absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full"></div>
+<div class="absolute top-1/3 left-2/3 w-0.5 h-0.5 bg-white rounded-full"></div>
+<div class="absolute top-1/2 left-1/2 w-1 h-1 bg-white rounded-full blur-[1px]"></div>
+<div class="absolute bottom-1/4 left-1/3 w-0.5 h-0.5 bg-white rounded-full"></div>
+<div class="absolute top-10 left-1/2 w-0.5 h-0.5 bg-white rounded-full"></div>
+<!-- Add more points for starfield effect -->
+</div>
+<!-- Toolbar Overlays -->
+<div class="absolute top-20 left-[280px] z-30 flex items-center gap-2 glass-card rounded-full p-1.5 px-4" data-purpose="canvas-controls">
+<div class="flex items-center gap-4 text-xs font-medium">
+<button class="text-gray-400 hover:text-white">2021</button>
+<button class="text-gray-400 hover:text-white">2022</button>
+<button class="text-gray-400 hover:text-white">2023</button>
+<button class="text-gray-400 hover:text-white">2024</button>
+<button class="bg-white text-black px-4 py-1 rounded-full">2025</button>
+<button class="text-gray-400 hover:text-white">2026</button>
+<button class="text-gray-400 hover:text-white"><svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
+</div>
+</div>
+<!-- Floating Canvas Tools (Left) -->
+<div class="absolute left-[280px] top-1/2 -translate-y-1/2 flex flex-col gap-4 z-30">
+<div class="flex flex-col glass-card rounded-2xl p-2 gap-4">
+<button class="p-2 rounded-lg hover:bg-white/10" title="Pan"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0V12m-3 0l3 .5m0-3V6a1.5 1.5 0 113 0v10m-3-10l3 .5m-9 7.5a4.5 4.5 0 119 0v-4" stroke-width="1.5"></path></svg></button>
+<button class="p-2 rounded-lg hover:bg-white/10" title="Select"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5" stroke-width="1.5"></path></svg></button>
+<button class="p-2 rounded-lg hover:bg-white/10" title="Zoom In"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" stroke-width="1.5"></path></svg></button>
+<button class="p-2 rounded-lg hover:bg-white/10" title="Compass"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" stroke-width="1.5"></path></svg></button>
+<button class="p-2 rounded-lg hover:bg-white/10" title="Expand"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" stroke-width="1.5"></path></svg></button>
+</div>
+</div>
+<!-- BEGIN: FloatingCardsContainer -->
+<div class="relative w-full h-full cursor-grab active:cursor-grabbing" id="main-canvas">
+<!-- Card: Mountain Trip -->
+<div class="absolute top-[20%] left-[25%] w-60 glass-card rounded-3xl p-3 floating-card" style="--rot: -2deg;">
+<div class="relative rounded-2xl overflow-hidden aspect-video bg-surface-low">
+<img alt="Mountain Trip" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE0oE0grSW7UVrI6xZf5OIYkvjqb_lywILc4iA2dCD80ffEc-vdUcq_gQ1j4OB6Qls3o5c19BDXY_rBX61qf9eEvl11vDiEnFdvDT5ZoGvX6mKyAbwWKXtVvUspUbVwyUrcI4wgwPopJKzEJTwfuW79GGEoc0Da8HRUvrph3DtagaGNjRQ8LYTEiPjG1nVgDzMngIQHwth4SJ0JTKJ2Q8HEZSbUc-SY9oWIpdDXAch6SYoHz6nPz2egMTyHl1IBnV-UyOc4PCEU-sV"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-10 h-10 rounded-full glass-card flex items-center justify-center pl-1">
+<svg class="w-5 h-5 fill-white" viewbox="0 0 20 20"><path d="M6 4l10 6-10 6V4z"></path></svg>
+</div>
+</div>
+<div class="absolute bottom-2 right-2 text-[10px] bg-black/40 px-2 py-0.5 rounded-full">00:45</div>
+</div>
+<div class="mt-3 px-1">
+<h3 class="text-sm font-semibold">Mountain Trip</h3>
+<p class="text-[10px] text-gray-400 mt-1">May 10, 2025 • 10:30 AM</p>
+<p class="text-[10px] text-gray-500">Manali, Himachal Pradesh</p>
+<div class="mt-3 inline-block px-2 py-0.5 rounded-full bg-white/5 text-[9px] text-gray-300">Travel</div>
+</div>
+</div>
+<!-- Card: Best Friends -->
+<div class="absolute top-[25%] left-[45%] w-64 glass-card rounded-3xl p-3 floating-card" style="--rot: 3deg;">
+<div class="rounded-2xl overflow-hidden aspect-[4/3] bg-surface-low">
+<img alt="Best Friends" class="w-full h-full object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVnA1Yxjef3I3nfUxWtSzSWLiuY8mcV0s7hw5P91W9k2yDnm4nzdlFo2kWesnMa6evqf9QO8hOKjK0R-OUdH9Cozq9cNu1Vp4n4tiKhPjI391rhERXWRvRRiCJGR9EnosBKBr85jGbUrIhz6u0U6jIMUWxP3auoS7-nk49bIWv3W50B4e9SEuiq4qgpVIzZhELQGOWuoJmkgAWKOg9K1QoI3MjawzxJaYFM0Np1oxn4jrSSlnlSJfYIC9hd_fRR0P9NxlEyVxvdTWz"/>
+</div>
+<div class="mt-3 px-1">
+<h3 class="text-sm font-semibold">Best Friends</h3>
+<p class="text-[10px] text-gray-400 mt-1">June 21, 2025 • 6:45 PM</p>
+<p class="text-[10px] text-gray-500">Goa</p>
+<div class="mt-3 inline-block px-2 py-0.5 rounded-full bg-white/5 text-[9px] text-gray-300">Friends</div>
+</div>
+</div>
+<!-- Card: Sunset View (Selected) -->
+<div class="absolute top-[45%] left-[42%] w-72 glass-card rounded-3xl p-4 ring-2 ring-white/50 z-20 floating-card" style="--rot: 0deg;">
+<div class="rounded-2xl overflow-hidden aspect-[1/1.2] bg-surface-low">
+<img alt="Sunset View" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH67dhegCm8OyMLZWCPxJXsnA03--Lt0-mhU5LobJJ77YMLfzONE9Ea01mlOQUuOd2KhhucNLPckKncUCVU0EYuJRk5TkZlHOjjxDD4RkKIGnP7rge8eRIGVwedJZFrf0EY10dU0JJVAGs75KpFmZxlINmFBWxRCFkxu4QsoVCW9FTTKakqntl22wmOSnYw_uFwyz_uIOo8Njc9Ya4ToUgdNaK2im3Xdmc4mGAX2AJCE7OTWNh3L-Mk2Hu9QV5Jh-cpD93e847yU4Q"/>
+</div>
+<div class="mt-4 px-1">
+<h3 class="text-base font-bold text-glow">Sunset View</h3>
+<p class="text-[11px] text-gray-300 mt-1">July 05, 2025 • 7:10 PM</p>
+<p class="text-[11px] text-gray-400">Kodaikanal, Tamil Nadu</p>
+<div class="mt-4 inline-block px-3 py-1 rounded-full bg-white/10 text-[10px] text-white">Nature</div>
+</div>
+</div>
+<!-- Card: Live Concert -->
+<div class="absolute top-[18%] left-[58%] w-56 glass-card rounded-3xl p-3 floating-card" style="--rot: 5deg;">
+<div class="relative rounded-2xl overflow-hidden aspect-video bg-surface-low">
+<img alt="Live Concert" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALTkqGdOpeGe0_8u5Vybr7huZgxoPPMsS7kegRuzxrO1DW0knY4lzxUspszbOGOb9dyJY1MBh1ic4z2DSFuDdEeaNYu17xpwSc1dSFe1KOfbJ3t5bBnrfiVdhgnNUja3ZSoEQ7vMd6uKa2sS1GnfwNmzRb2Q8xKvuJhO274_SeEjEbAQguC6wtCXAZQ6vQ4nmDTnl2gNBMZyxrTF-lTV_Z1oxR25um75d-6sODdq4Ubc9K5O-fcd9aSOspqjixsUyza9V48w2TRbca"/>
+<div class="absolute bottom-2 right-2 text-[10px] bg-black/40 px-2 py-0.5 rounded-full">01:12</div>
+</div>
+<div class="mt-3 px-1">
+<h3 class="text-sm font-semibold">Live Concert</h3>
+<p class="text-[10px] text-gray-400 mt-1">March 15, 2025 • 8:00 PM</p>
+<p class="text-[10px] text-gray-500">Bangalore, Karnataka</p>
+<div class="mt-3 inline-block px-2 py-0.5 rounded-full bg-white/5 text-[9px] text-gray-300">Music</div>
+</div>
+</div>
+<!-- Card: Peaceful Morning -->
+<div class="absolute top-[65%] left-[26%] w-60 glass-card rounded-3xl p-3 floating-card" style="--rot: -4deg;">
+<div class="rounded-2xl overflow-hidden aspect-square bg-surface-low">
+<img alt="Peaceful Morning" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtxGgZtiKXZgXYyrFBfLg7nKFOGVPVUFWvqDSS99sl-9ej0AdiWI7aeVLh7c98ygyiiG-_bTZeVUyPzr6UUV_r_-cEZLl0LYtfOrPA6w8xT5wWYal-WHrNP1de6xrjjGPqN2vjh6KMnsqZPVc-PccfQeFZJEinLczBhc4B_YH0zLeQmTlwx-Nc8hw_Ho8AKskD7elSF6a2pE9p_uSZQ8X6fR7quy9OmIVUisV5vcBxAgRm_XAQhxwwFd_hsOBABDi5NFhC1RwwQsu2"/>
+</div>
+<div class="mt-3 px-1">
+<h3 class="text-sm font-semibold">Peaceful Morning</h3>
+<p class="text-[10px] text-gray-400 mt-1">June 02, 2025 • 6:30 AM</p>
+<p class="text-[10px] text-gray-500">Pondicherry</p>
+<div class="mt-3 inline-block px-2 py-0.5 rounded-full bg-white/5 text-[9px] text-gray-300">Relax</div>
+</div>
+</div>
+<!-- Card: My Puppy Bruno -->
+<div class="absolute top-[72%] left-[43%] w-48 glass-card rounded-3xl p-3 floating-card" style="--rot: 1deg;">
+<div class="rounded-2xl overflow-hidden aspect-square bg-surface-low">
+<img alt="Puppy Bruno" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVV46zQMa1vpTWWg2sL5NXdm7EPT7oMzVsBuRX5QPVHywo9DdWYbWPSactcnH1AZj-dWFePRkxJh82vc5dv3XEd1A-l7r5h-iAZjMkUXJ1lI9BxchJrVvRvrPbCBzD0qsyzYy3yPlsFU1WjTJAtSxa6qJR3VnSJuiRgBwFigGv6AhlLB2yI9MAzy0assH7mj9WvqCI9AzIRxybY2gvW_hT66ZTz0Lq-th7juRQMS_Y9X_MDXwl0u295g0IkjhRPAEdHf6YoaTisv3F"/>
+</div>
+<div class="mt-3 px-1">
+<h3 class="text-sm font-semibold">My Puppy Bruno</h3>
+<p class="text-[10px] text-gray-400 mt-1">Jan 18, 2025 • 4:00 PM</p>
+<div class="mt-3 inline-block px-2 py-0.5 rounded-full bg-white/5 text-[9px] text-gray-300">Pets</div>
+</div>
+</div>
+<!-- Card: Road Trip -->
+<div class="absolute top-[70%] left-[58%] w-64 glass-card rounded-3xl p-3 floating-card" style="--rot: 2deg;">
+<div class="relative rounded-2xl overflow-hidden aspect-[16/9] bg-surface-low">
+<img alt="Road Trip" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXD2a55PPxi4oNNusshUncygWTLrzW3FAvPTwAzSc9_2hW2xJKrFTmvcKYW3HJIRtRflAoX8VzUCeec3763aFBHhntv31suKPXt8FDcsQ1Sps6Nq-qcVHUWqQ44OpGmkx1nqDM7pHT0dXSWjOMxCmGs4u5gQOHSTfaA4AyHIeJrUTmKtqfb0iBnXs7CY8YjEEEbHoqQFXldfA0WIQQKtY0OAuwqBwvDt5vMPhg1yUWUS13Bzm0W9-SYRdDsH0ToS7QOTm0N5VofYjz"/>
+<div class="absolute bottom-2 right-2 text-[10px] bg-black/40 px-2 py-0.5 rounded-full">01:05</div>
+</div>
+<div class="mt-3 px-1">
+<h3 class="text-sm font-semibold">Road Trip</h3>
+<p class="text-[10px] text-gray-400 mt-1">Feb 14, 2025 • 11:00 AM</p>
+<p class="text-[10px] text-gray-500">Wayanad, Kerala</p>
+<div class="mt-3 inline-block px-2 py-0.5 rounded-full bg-white/5 text-[9px] text-gray-300">Travel</div>
+</div>
+</div>
+</div>
+<!-- END: FloatingCardsContainer -->
+<!-- BEGIN: BottomTimelineSlider -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-2/3 glass-card rounded-full p-4 px-8 z-50" data-purpose="timeline-slider">
+<div class="relative flex items-center justify-between text-[11px] font-medium text-gray-400">
+<span class="hover:text-white cursor-pointer transition-colors">2022</span>
+<span class="hover:text-white cursor-pointer transition-colors">2023</span>
+<span class="hover:text-white cursor-pointer transition-colors">2024</span>
+<span class="text-white font-bold text-sm">2025</span>
+<span class="hover:text-white cursor-pointer transition-colors">2026</span>
+<span class="hover:text-white cursor-pointer transition-colors">2027</span>
+<span class="hover:text-white cursor-pointer transition-colors">2028</span>
+<!-- The Slider Line -->
+<div class="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-[1px] bg-white/10 -z-10"></div>
+<!-- Progress Handle -->
+<div class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,1)]"></div>
+</div>
+</div>
+<!-- END: BottomTimelineSlider -->
+<!-- Canvas Bottom Utilities -->
+<div class="absolute bottom-8 right-[340px] z-50 flex items-center gap-3">
+<button class="glass-card p-3 rounded-2xl hover:bg-white/10"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" stroke-width="1.5"></path></svg></button>
+<button class="glass-card p-3 rounded-2xl hover:bg-white/10"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16m-7 6h7" stroke-width="1.5"></path></svg></button>
+<button class="bg-white text-black p-4 rounded-full shadow-2xl hover:scale-105 transition-transform"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-width="3"></path></svg></button>
+</div>
+<!-- Mini Map (Bottom Left) -->
+<div class="absolute bottom-8 left-[280px] w-32 h-20 glass-card rounded-xl p-1 z-30 opacity-60">
+<div class="w-full h-full border border-white/10 rounded-lg relative overflow-hidden">
+<div class="absolute top-2 left-2 w-1.5 h-1.5 bg-white/40 rounded-full"></div>
+<div class="absolute top-4 left-6 w-1 h-1 bg-white/40 rounded-full"></div>
+<div class="absolute bottom-3 left-4 w-1.5 h-1.5 bg-white/40 rounded-full"></div>
+<div class="absolute top-6 left-12 w-1.5 h-1.5 bg-white rounded-full shadow-white shadow-sm"></div> <!-- User Current View -->
+<div class="absolute top-8 right-6 w-1 h-1 bg-white/40 rounded-full"></div>
+</div>
+</div>
+</main>
+<!-- END: MainCanvasArea -->
+<!-- BEGIN: RightPanel (Inspector) -->
+<aside class="fixed right-0 top-16 bottom-0 w-80 glass-panel z-40 p-6 overflow-y-auto hidden 2xl:block">
+<div class="flex items-center justify-between mb-6">
+<button class="p-1 rounded-md hover:bg-white/10"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2"></path></svg></button>
+<div class="flex items-center gap-3">
+<button class="p-1 rounded-md hover:bg-white/10"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.382-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" stroke-width="2"></path></svg></button>
+<button class="p-1 rounded-md hover:bg-white/10"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" stroke-width="2"></path></svg></button>
+<button class="p-1 rounded-md hover:bg-white/10"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" stroke-width="2"></path></svg></button>
+</div>
+</div>
+<div class="rounded-2xl overflow-hidden mb-6 aspect-[3/4] bg-surface-low">
+<img alt="Selected Preview" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7c5SXPGz-Obc5xLCkgzRdU_3nnl-HmSGoHkaUgziuWEaNTAc0nZ9LkBace-Vh7hhgXbvX9Cbqq61VYNc-qgy5c6-2C9-t_zRYNLdeavueUGFkB4T7VulLI2RiKHCB_Wim1z6wOIhm9vTYrJJJsw5rlyjMit-swbcWxJ6VXNGNLWZzMJZDVqhUl1Efsa5BI92WuA1ig9iLqf3ZVgYIqnM3_jIcUV7OxMXy6WMPX15PJV0--AU9KvPOYr9nY8Xvu94tgjfirYKduGYL"/>
+</div>
+<div class="space-y-6">
+<div class="flex items-start justify-between">
+<h2 class="text-2xl font-bold">Sunset View</h2>
+<button class="text-xs bg-white/5 border border-white/10 px-3 py-1 rounded-full hover:bg-white/10">Edit</button>
+</div>
+<div class="space-y-3 text-sm text-gray-400">
+<div class="flex items-center gap-3">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-width="2"></path></svg>
+<span class="text-white">July 05, 2025</span>
+</div>
+<div class="flex items-center gap-3">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"></path></svg>
+<span class="text-white">7:10 PM</span>
+</div>
+<div class="flex items-center gap-3">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-width="2"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="2"></path></svg>
+<span class="text-white">Kodaikanal, Tamil Nadu</span>
+</div>
+<div class="flex items-center gap-3">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" stroke-width="2"></path></svg>
+<span class="text-white">Nature</span>
+</div>
+</div>
+<div class="pt-2">
+<p class="text-sm leading-relaxed text-gray-300">The sunset view from the hilltop was absolutely breathtaking. One of the most peaceful moments I've experienced in a long time.</p>
+</div>
+<div>
+<h4 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Tags</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs text-gray-300">Nature</span>
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs text-gray-300">Sunset</span>
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs text-gray-300">Peaceful</span>
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs text-gray-300">Trip</span>
+<button class="w-6 h-6 flex items-center justify-center bg-white/10 rounded-full">+</button>
+</div>
+</div>
+<div>
+<h4 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Collection</h4>
+<div class="flex items-center justify-between p-3 glass-card rounded-xl cursor-pointer hover:bg-white/5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg overflow-hidden bg-surface-low">
+<img alt="Collection Cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo2qaT7kvnfvnK7TMqp8nL6XVBKKdE1NYKsqwkHa583MdCQkNEpZgIyfOunSQ1x-rbfHRM1iVLBd1lUVKVWg6b9Zig-MC0zL_EV6cMQhRsxO8fS3yZxO7cEnif9RB_G_5Z_aZZPSz1HBUctLzSjQvc7U-6IxuumsvjVz0cdjL-ueWAxWbKHsdieQbU2ImpYQqKZC60kdgZPjerQfEGuojVeqwpibLyAnnkEOfz_sxUcAr_ACb98wKrXy5sT8sXMRdiS3LL32_fOJwg"/>
+</div>
+<span class="text-sm font-medium">Travel Diaries</span>
+</div>
+<svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2"></path></svg>
+</div>
+</div>
+</div>
+</aside>
+<!-- END: RightPanel -->
+<script data-purpose="drag-interaction">
+    // Simple conceptual script for dragging simulation
+    const canvas = document.getElementById('main-canvas');
+    let isDragging = false;
+    let startX, startY;
+    let scrollLeft, scrollTop;
+
+    canvas.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.pageX - canvas.offsetLeft;
+      startY = e.pageY - canvas.offsetTop;
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+      isDragging = false;
+    });
+
+    canvas.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      // Logic for moving elements would go here
+    });
+  </script>
+</body></html>

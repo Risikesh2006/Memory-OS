@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aetheric Vault | Digital Legacy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-highlight: rgba(255, 255, 255, 0.3);
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Geist', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 0.5px solid var(--glass-border);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(60px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.02) translateY(-5px);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+        }
+
+        .pin-input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .pin-input:focus {
+            outline: none;
+            border-bottom: 2px solid #ffffff;
+        }
+
+        .blast-animation {
+            animation: blastOut 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes blastOut {
+            0% { transform: scale(0.1) translateZ(-500px); opacity: 0; }
+            100% { transform: scale(1) translateZ(0); opacity: 1; }
+        }
+
+        .floating-vault {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#656464",
+                      "outline-variant": "#444748",
+                      "error": "#ffb4ab",
+                      "on-surface": "#e2e2e2",
+                      "surface-container-highest": "#353535",
+                      "tertiary-fixed-dim": "#c8c6c5",
+                      "surface-variant": "#353535",
+                      "on-secondary-container": "#bab8b7",
+                      "on-secondary": "#313030",
+                      "surface-dim": "#131313",
+                      "secondary": "#c9c6c5",
+                      "on-tertiary-fixed-variant": "#474746",
+                      "inverse-on-surface": "#303030",
+                      "on-tertiary": "#313030",
+                      "inverse-surface": "#e2e2e2",
+                      "on-secondary-fixed-variant": "#474646",
+                      "on-secondary-fixed": "#1c1b1b",
+                      "primary-container": "#e2e2e2",
+                      "primary": "#ffffff",
+                      "on-primary": "#2f3131",
+                      "on-background": "#e2e2e2",
+                      "surface-container-high": "#2a2a2a",
+                      "on-tertiary-fixed": "#1c1b1b",
+                      "surface": "#131313",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-primary-fixed-variant": "#454747",
+                      "surface-bright": "#393939",
+                      "error-container": "#93000a",
+                      "on-primary-fixed": "#1a1c1c",
+                      "secondary-fixed-dim": "#c9c6c5",
+                      "background": "#131313",
+                      "tertiary-fixed": "#e5e2e1",
+                      "secondary-container": "#4a4949",
+                      "surface-container-low": "#1b1b1b",
+                      "tertiary-container": "#e5e2e1",
+                      "on-error": "#690005",
+                      "secondary-fixed": "#e5e2e1",
+                      "surface-tint": "#c6c6c7",
+                      "on-surface-variant": "#c4c7c8",
+                      "surface-container": "#1f1f1f",
+                      "tertiary": "#ffffff",
+                      "on-error-container": "#ffdad6",
+                      "on-primary-container": "#636565",
+                      "primary-fixed": "#e2e2e2",
+                      "outline": "#8e9192",
+                      "primary-fixed-dim": "#c6c6c7",
+                      "inverse-primary": "#5d5f5f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "margin-mobile": "16px",
+                      "container-max": "1440px",
+                      "gutter": "24px",
+                      "margin-desktop": "64px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "mono-technical": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-caps": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.15em", "fontWeight": "700"}],
+                      "mono-technical": ["13px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                      "body-lg": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-black">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center p-8">
+<nav class="bg-surface/30 backdrop-blur-[40px] rounded-full px-8 py-3 flex items-center gap-12 border border-primary/10 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+<span class="font-headline-md text-headline-md text-primary tracking-tighter cursor-pointer">Aetheric Vault</span>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-body-lg text-body-lg text-on-surface-variant hover:text-primary transition-all" href="#">Timeline</a>
+<a class="font-body-lg text-body-lg text-on-surface-variant hover:text-primary transition-all" href="#">Archives</a>
+<a class="font-body-lg text-body-lg text-primary border-b border-primary pb-1" href="#">The Vault</a>
+<a class="font-body-lg text-body-lg text-on-surface-variant hover:text-primary transition-all" href="#">Sensory</a>
+<a class="font-body-lg text-body-lg text-on-surface-variant hover:text-primary transition-all" href="#">Synthesis</a>
+</div>
+<button class="bg-white text-black px-6 py-2 rounded-full font-body-lg hover:scale-95 transition-all">New Entry</button>
+</nav>
+</header>
+<!-- Main Spatial Canvas -->
+<main class="relative min-h-screen pt-32 px-16 overflow-hidden flex items-center justify-center">
+<!-- Background Animation -->
+
+<!-- Vault Selection View (Visible initially) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-12 z-10" id="vaultSelection">
+<!-- Vault 2024 -->
+<div class="floating-vault flex flex-col items-center group cursor-pointer" onclick="openPinOverlay('2024')" style="animation-delay: 0s;">
+<div class="w-64 h-64 glass-container rounded-2xl flex items-center justify-center relative overflow-hidden group-hover:border-primary/40 transition-all">
+<div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent"></div>
+<span class="material-symbols-outlined text-6xl text-primary/40 group-hover:text-primary transition-all">inventory_2</span>
+<div class="absolute bottom-4 font-mono-technical text-mono-technical tracking-widest opacity-60">ENCRYPTED</div>
+</div>
+<h2 class="mt-6 font-display-lg text-display-lg text-primary">2024</h2>
+<span class="font-label-caps text-label-caps text-on-surface-variant">1,402 ASSETS</span>
+</div>
+<!-- Vault 2025 (Active Selection) -->
+<div class="floating-vault flex flex-col items-center group cursor-pointer" onclick="openPinOverlay('2025')" style="animation-delay: 1.5s;">
+<div class="w-72 h-72 glass-container rounded-2xl flex items-center justify-center relative overflow-hidden border-primary/20 shadow-2xl group-hover:border-primary/60 transition-all scale-110">
+<div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
+<span class="material-symbols-outlined text-7xl text-primary group-hover:scale-110 transition-transform">lock</span>
+<div class="absolute top-4 right-4 flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+</div>
+</div>
+<h2 class="mt-8 font-display-lg text-display-lg text-primary">2025</h2>
+<span class="font-label-caps text-label-caps text-primary">892 ASSETS • CURRENT</span>
+</div>
+<!-- Vault 2026 -->
+<div class="floating-vault flex flex-col items-center group cursor-pointer opacity-50" onclick="openPinOverlay('2026')" style="animation-delay: 3s;">
+<div class="w-64 h-64 glass-container rounded-2xl flex items-center justify-center relative overflow-hidden">
+<span class="material-symbols-outlined text-6xl text-primary/20">lock_clock</span>
+</div>
+<h2 class="mt-6 font-display-lg text-display-lg text-primary/40">2026</h2>
+<span class="font-label-caps text-label-caps text-on-surface-variant">READY 01.01.26</span>
+</div>
+</section>
+<!-- PIN Overlay -->
+<div class="hidden fixed inset-0 z-[60] bg-black/80 backdrop-blur-xl flex items-center justify-center transition-opacity duration-500 opacity-0" id="pinOverlay">
+<div class="glass-container p-12 rounded-[40px] w-[400px] flex flex-col items-center border-white/20">
+<span class="material-symbols-outlined text-4xl mb-6">lock_open</span>
+<h3 class="font-headline-md text-headline-md mb-8">Verification Required</h3>
+<div class="flex gap-4 mb-12" id="pinDisplay">
+<div class="w-12 h-16 border-b-2 border-white/20 flex items-center justify-center text-3xl font-headline-md">•</div>
+<div class="w-12 h-16 border-b-2 border-white/20 flex items-center justify-center text-3xl font-headline-md">•</div>
+<div class="w-12 h-16 border-b-2 border-white/20 flex items-center justify-center text-3xl font-headline-md">•</div>
+<div class="w-12 h-16 border-b-2 border-white/20 flex items-center justify-center text-3xl font-headline-md">•</div>
+</div>
+<div class="grid grid-cols-3 gap-6">
+<!-- Numeric Pad -->
+<button class="w-16 h-16 rounded-full border border-white/5 hover:bg-white hover:text-black transition-all font-headline-md text-2xl flex items-center justify-center" onclick="handlePinInput(1)">1</button>
+<button class="w-16 h-16 rounded-full border border-white/5 hover:bg-white hover:text-black transition-all font-headline-md text-2xl flex items-center justify-center" onclick="handlePinInput(2)">2</button>
+<button class="w-16 h-16 rounded-full border border-white/5 hover:bg-white hover:text-black transition-all font-headline-md text-2xl flex items-center justify-center" onclick="handlePinInput(3)">3</button>
+<button class="w-16 h-16 rounded-full border border-white/5 hover:bg-white hover:text-black transition-all font-headline-md text-2xl flex items-center justify-center" onclick="handlePinInput(4)">4</button>
+<button class="w-16 h-16 rounded-full border border-white/5 hover:bg-white hover:text-black transition-all font-headline-md text-2xl flex items-center justify-center" onclick="handlePinInput(5)">5</button>
+<button class="w-16 h-16 rounded-full border border-white/5 hover:bg-white hover:text-black transition-all font-headline-md text-2xl flex items-center justify-center" onclick="handlePinInput(6)">6</button>
+<button class="w-16 h-16 rounded-full border border-white/5 hover:bg-white hover:text-black transition-all font-headline-md text-2xl flex items-center justify-center" onclick="handlePinInput(7)">7</button>
+<button class="w-16 h-16 rounded-full border border-white/5 hover:bg-white hover:text-black transition-all font-headline-md text-2xl flex items-center justify-center" onclick="handlePinInput(8)">8</button>
+<button class="w-16 h-16 rounded-full border border-white/5 hover:bg-white hover:text-black transition-all font-headline-md text-2xl flex items-center justify-center" onclick="handlePinInput(9)">9</button>
+<button class="w-16 h-16 rounded-full flex items-center justify-center text-white/40"><span class="material-symbols-outlined">fingerprint</span></button>
+<button class="w-16 h-16 rounded-full border border-white/5 hover:bg-white hover:text-black transition-all font-headline-md text-2xl flex items-center justify-center" onclick="handlePinInput(0)">0</button>
+<button class="w-16 h-16 rounded-full flex items-center justify-center text-error" onclick="closePinOverlay()"><span class="material-symbols-outlined">backspace</span></button>
+</div>
+</div>
+</div>
+<!-- Blast Out Container (Cards show up here) -->
+<div class="hidden absolute inset-0 z-20 pointer-events-none flex items-center justify-center" id="blastContainer">
+<!-- Cards will be dynamically injected or revealed here -->
+<div class="relative w-full h-full">
+<!-- Summit of Solitude Card -->
+<div class="blast-animation glass-card absolute left-[15%] top-[25%] w-80 p-4 rounded-3xl cursor-pointer pointer-events-auto" id="summitCard" onclick="selectCard('summit')" style="animation-delay: 0.2s;">
+<div class="h-64 rounded-2xl mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-resolution photograph of a lone human figure standing on the peak of a jagged, snowy mountain during a twilight solar eclipse. The lighting is cold and atmospheric with deep blues and brilliant white highlights. The composition is expansive, conveying a sense of profound isolation and achievement in a futuristic Noir Spatial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG8gf04MejLS4tAJcBAV0j413bIIMFDovzpM4R2K_rpdNEywI9z9J7g6lwEOjVP28oBhOyd6L7BEE9aQMdeeJlQam1LZuFF5WHWCZZDy6subrMRNsgj3qrQb2kl36f-3eM09AXQt0vPZ7-Zco-vrG6mC8cA0fmSKuodXK-a8c4L-Lfkvx62RyufVOjKavtLIFKSbmx-9kQxA-O2kBTW0bf4CWGi9OK1-ynp7F9alMiuPWZ74xcYvqJPmacAdk3yIWWFkXlaDrq-PKr"/>
+</div>
+<div class="space-y-2">
+<h4 class="font-headline-md text-body-lg text-primary">Summit of Solitude</h4>
+<p class="font-mono-technical text-mono-technical text-on-surface-variant italic">"A moment of absolute clarity amidst the thin air of the peaks..."</p>
+</div>
+<div class="mt-4 flex justify-between items-center opacity-40">
+<span class="font-label-caps text-label-caps">OCT 14 2025</span>
+<span class="material-symbols-outlined text-sm">location_on</span>
+</div>
+</div>
+<!-- Another Memory Card -->
+<div class="blast-animation glass-card absolute right-[20%] bottom-[20%] w-72 p-4 rounded-3xl cursor-pointer pointer-events-auto" style="animation-delay: 0.4s;">
+<div class="h-56 rounded-2xl mb-4 overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A mesmerizing, abstract digital art piece of a high-tech data core emitting neon pulses of light in a pitch-black environment. The core is encased in layers of translucent glass that reflect the surrounding void. The color scheme is monochrome white and deep black, with high-fidelity textures and a sense of infinite digital space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmeKaqHeA_kjW0l4qWoTVyLevVQdE3c0UqyW2u-wF_d0HaribP77_jRV7IWBUXr5EOGkus__MhQ9QVu1e0BU2auvOFX2-G0f1lae80pNcNN4aMH_WCH2vN9Jlm-KxgPOARaWP_CAWMeT6v9deeZQ6SSM6YbqTyf813lTx9NSM2qm3jkhjIIPnUOD19a2EuH94wAyCByR5ePj3-tlKoxnd_6G0eSnmgsexoP-DB3AFp--yfGnZx6kVLLS3CKOpsKFW97ygw1mzZCt3v"/>
+</div>
+<div class="space-y-2">
+<h4 class="font-headline-md text-body-lg text-primary">Synthesis Core</h4>
+<p class="font-mono-technical text-mono-technical text-on-surface-variant italic">"Reaching full alignment with the neural architecture."</p>
+</div>
+<div class="mt-4 flex justify-between items-center opacity-40">
+<span class="font-label-caps text-label-caps">DEC 02 2025</span>
+<span class="material-symbols-outlined text-sm">hub</span>
+</div>
+</div>
+<!-- Floating Abstract Shape -->
+<div class="blast-animation absolute left-[50%] top-[10%] opacity-30" style="animation-delay: 0.6s;">
+
+</div>
+</div>
+</div>
+<!-- Enlarged View Sidebar -->
+<aside class="fixed top-0 right-0 h-full w-[450px] z-[70] translate-x-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" id="detailsSidebar">
+<div class="h-full glass-container rounded-l-[40px] border-l border-white/20 p-12 flex flex-col">
+<button class="self-end mb-8 text-white/60 hover:text-white transition-colors" onclick="closeSidebar()">
+<span class="material-symbols-outlined text-3xl">close</span>
+</button>
+<div class="flex-grow overflow-y-auto no-scrollbar">
+<div class="rounded-3xl overflow-hidden mb-12 shadow-2xl">
+<img class="w-full aspect-square object-cover" data-alt="A detailed closeup of a premium frosted glass interface with holographic data overlays. The image highlights the texture of the glass and the precision of the light particles, evoking a sense of high-end technology and deep-space mystery." id="sidebarImage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvm0uy8WxVaMgAFB-7lEb1raZ_HfNObnzNLUuvzpuzAPQWG9qaLuCv9YJ_0TCT2HzMgOSg_oBBSFcBGG6rftVFG-k9yHTvWkrZsuJr35zf58UZkwxKZ7e7bl2Z-kTWvkwLLzGmsS15Ejr1_JnMTkef20yAjSl70j4yRIqjqOFzeXh5RuRahnbWbdM54uBR3xOpV0ZWDuBa3heDUrubCR282nXnmupvAcYMe4hi6G1M0q1LZD6cHAxwWvFTi7ByI9bPxIl17DslnVeu"/>
+</div>
+<div class="space-y-8">
+<div>
+<h2 class="font-display-lg text-[32px] text-primary mb-2" id="sidebarTitle">Summit of Solitude</h2>
+<div class="flex gap-4">
+<span class="bg-white/10 px-3 py-1 rounded-full font-label-caps text-label-caps">MEMORIAM</span>
+<span class="bg-white/10 px-3 py-1 rounded-full font-label-caps text-label-caps">CRYSTALLIZED</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8 py-8 border-y border-white/10">
+<div>
+<p class="font-label-caps text-on-surface-variant mb-1">DATE</p>
+<p class="font-mono-technical text-primary">OCTOBER 14, 2025</p>
+</div>
+<div>
+<p class="font-label-caps text-on-surface-variant mb-1">LOCATION</p>
+<p class="font-mono-technical text-primary">K2 PEAK, EARTH</p>
+</div>
+<div>
+<p class="font-label-caps text-on-surface-variant mb-1">EMOTIONAL TONE</p>
+<p class="font-mono-technical text-primary">98% TRANQUILITY</p>
+</div>
+<div>
+<p class="font-label-caps text-on-surface-variant mb-1">FILE SIZE</p>
+<p class="font-mono-technical text-primary">12.4 GB</p>
+</div>
+</div>
+<div>
+<p class="font-label-caps text-on-surface-variant mb-4">AI ANALYSIS</p>
+<p class="font-body-lg text-primary/80 leading-relaxed italic">
+                                "The biometric readings from this moment indicate a rare state of total cognitive harmony. Heart rate variance was optimal despite the high altitude. The neural capture suggests this was a pivotal moment of self-actualization."
+                            </p>
+</div>
+</div>
+</div>
+<div class="pt-12 mt-auto">
+<button class="w-full bg-primary text-on-primary py-5 rounded-2xl font-headline-md flex items-center justify-center gap-3 hover:scale-[0.98] transition-transform active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+<span class="material-symbols-outlined">download</span>
+                        Transfer Vault (ZIP)
+                    </button>
+<p class="text-center font-label-caps text-on-surface-variant mt-4 opacity-40">256-BIT ENCRYPTION ACTIVE</p>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer -->
+<footer class="fixed bottom-0 left-0 right-0 p-8 flex justify-center space-x-gutter items-center opacity-60 hover:opacity-100 transition-opacity z-50">
+<span class="font-label-caps text-label-caps text-on-tertiary-container">© 2050 Digital Legacy Act</span>
+<div class="flex gap-8">
+<a class="font-label-caps text-label-caps text-on-tertiary-container hover:text-primary transition-colors" href="#">Digital Legacy Act</a>
+<a class="font-label-caps text-label-caps text-on-tertiary-container hover:text-primary transition-colors" href="#">Privacy</a>
+</div>
+</footer>
+<script>
+        let currentPin = '';
+
+        function openPinOverlay(vaultYear) {
+            const overlay = document.getElementById('pinOverlay');
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                overlay.classList.remove('opacity-0');
+            }, 10);
+            currentPin = '';
+            updatePinDisplay();
+        }
+
+        function closePinOverlay() {
+            const overlay = document.getElementById('pinOverlay');
+            overlay.classList.add('opacity-0');
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+            }, 500);
+        }
+
+        function handlePinInput(num) {
+            if (currentPin.length < 4) {
+                currentPin += num;
+                updatePinDisplay();
+            }
+
+            if (currentPin.length === 4) {
+                // Trigger Blast Effect
+                setTimeout(() => {
+                    executeBlast();
+                }, 300);
+            }
+        }
+
+        function updatePinDisplay() {
+            const dots = document.getElementById('pinDisplay').children;
+            for (let i = 0; i < 4; i++) {
+                if (i < currentPin.length) {
+                    dots[i].classList.add('text-primary');
+                    dots[i].classList.remove('text-white/20');
+                } else {
+                    dots[i].classList.remove('text-primary');
+                    dots[i].classList.add('text-white/20');
+                }
+            }
+        }
+
+        function executeBlast() {
+            closePinOverlay();
+            document.getElementById('vaultSelection').classList.add('transition-all', 'duration-1000', 'scale-150', 'opacity-0');
+            setTimeout(() => {
+                document.getElementById('vaultSelection').classList.add('hidden');
+                document.getElementById('blastContainer').classList.remove('hidden');
+            }, 500);
+        }
+
+        function selectCard(cardId) {
+            const sidebar = document.getElementById('detailsSidebar');
+            sidebar.classList.remove('translate-x-full');
+            // Logic to update sidebar content based on selection could go here
+        }
+
+        function closeSidebar() {
+            const sidebar = document.getElementById('detailsSidebar');
+            sidebar.classList.add('translate-x-full');
+        }
+
+        // Add subtle mouse movement effect to cards
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.glass-card');
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+            const yAxis = (window.innerHeight / 2 - e.</script></body></html>

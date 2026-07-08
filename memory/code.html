@@ -1,0 +1,462 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Memory Archive | Legacy OS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100;300;400;500;600;700;800;900&display=swap');
+        
+        body {
+            background-color: #0e0e0e;
+            color: #e2e2e2;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .neumorphic-inset {
+            background: rgba(14, 14, 14, 0.4);
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.5), 
+                        inset -2px -2px 6px rgba(255, 255, 255, 0.05);
+        }
+
+        .neumorphic-lift {
+            box-shadow: 12px 12px 24px rgba(0, 0, 0, 0.4), 
+                        -4px -4px 12px rgba(255, 255, 255, 0.02);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .neumorphic-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.6), 
+                        -6px -6px 16px rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .breathing-glow {
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); transform: scale(1); }
+            50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.3); transform: scale(1.05); }
+        }
+
+        .dust-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 24px;
+        }
+        @media (min-width: 768px) { .masonry-grid { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+        @media (min-width: 1280px) { .masonry-grid { column-count: 4; } }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 24px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "glass-border-hover": "rgba(255, 255, 255, 0.30)",
+                      "glass-fill": "rgba(255, 255, 255, 0.03)",
+                      "primary-fixed-dim": "#c6c6c7",
+                      "on-tertiary-container": "#626566",
+                      "primary-container": "#e2e2e2",
+                      "on-primary-fixed-variant": "#454747",
+                      "primary": "#ffffff",
+                      "tertiary-container": "#e0e3e4",
+                      "surface-container-high": "#2a2a2a",
+                      "on-tertiary-fixed-variant": "#444748",
+                      "on-error-container": "#ffdad6",
+                      "on-primary-container": "#636565",
+                      "background": "#131313",
+                      "surface-container-low": "#1b1b1b",
+                      "on-primary": "#2f3131",
+                      "on-surface-muted": "rgba(226, 226, 226, 0.70)",
+                      "on-tertiary": "#2d3132",
+                      "on-surface-variant": "#c4c7c8",
+                      "on-secondary-fixed-variant": "#474746",
+                      "surface-container-highest": "#353535",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "on-tertiary-fixed": "#191c1d",
+                      "on-error": "#690005",
+                      "glass-hover": "rgba(255, 255, 255, 0.06)",
+                      "secondary": "#c8c6c5",
+                      "primary-fixed": "#e2e2e2",
+                      "surface-dim": "#131313",
+                      "tertiary": "#ffffff",
+                      "inverse-surface": "#e2e2e2",
+                      "error": "#ffb4ab",
+                      "glass-border": "rgba(255, 255, 255, 0.10)",
+                      "on-secondary-container": "#b6b5b4",
+                      "surface-variant": "#353535",
+                      "outline-variant": "#444748",
+                      "on-surface": "#e2e2e2",
+                      "on-primary-fixed": "#1a1c1c",
+                      "surface-tint": "#c6c6c7",
+                      "tertiary-fixed": "#e0e3e4",
+                      "on-background": "#e2e2e2",
+                      "surface-container-lowest": "#0e0e0e",
+                      "outline": "#8e9192",
+                      "surface-bright": "#393939",
+                      "on-secondary-fixed": "#1b1c1b",
+                      "on-secondary": "#303030",
+                      "inverse-primary": "#5d5f5f",
+                      "surface": "#131313",
+                      "inverse-on-surface": "#303030",
+                      "tertiary-fixed-dim": "#c4c7c8",
+                      "surface-container": "#1f1f1f",
+                      "secondary-fixed": "#e4e2e1",
+                      "secondary-container": "#474746",
+                      "error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-lg": "48px",
+                      "unit": "8px",
+                      "stack-md": "24px",
+                      "container-padding": "40px",
+                      "stack-sm": "12px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Geist"],
+                      "headline-lg-mobile": ["Geist"],
+                      "label-md": ["Geist"],
+                      "headline-lg": ["Geist"],
+                      "headline-md": ["Geist"],
+                      "display-lg": ["Geist"],
+                      "label-sm": ["Geist"],
+                      "body-md": ["Geist"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                      "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface-container-lowest font-body-md text-on-surface selection:bg-primary selection:text-surface">
+<!-- Atmospheric Background -->
+<div class="dust-container">
+<div class="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-white/5 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-white/5 blur-[100px] rounded-full"></div>
+<canvas class="w-full h-full opacity-30" id="dustCanvas" width="390" height="884"></canvas>
+</div>
+<!-- Navigation Shell (TopNavBar from JSON) -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-container-padding h-24 pointer-events-none">
+<div class="glass-panel rounded-full max-w-7xl mx-auto h-16 px-8 flex items-center justify-between shadow-2xl pointer-events-auto backdrop-blur-[40px] border border-glass-border hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full">
+<div class="flex items-center gap-6">
+<div class="font-headline-md text-headline-md tracking-tighter text-primary">Legacy OS</div>
+<div class="hidden md:flex gap-4">
+<a class="font-body-md text-body-md text-on-surface-muted hover:text-primary transition-colors" href="#">Archive</a>
+<a class="font-body-md text-body-md text-primary border-b border-primary pb-1" href="#">Chronology</a>
+<a class="font-body-md text-body-md text-on-surface-muted hover:text-primary transition-colors" href="#">Museum</a>
+</div>
+</div>
+<!-- Neumorphic Search Bar -->
+<div class="hidden lg:flex flex-1 max-w-md mx-8">
+<div class="neumorphic-inset w-full h-10 rounded-full flex items-center px-4 gap-3 border border-white/5">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-on-surface-variant/50" placeholder="Search the void..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary-fixed-dim hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-primary-fixed-dim hover:text-primary transition-colors">settings</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-glass-border">
+<img class="w-full h-full object-cover grayscale" data-alt="A professional, high-contrast grayscale studio portrait of a sophisticated user with sharp features and soft lighting. The image follows a monochrome black and white aesthetic, reflecting the premium aetheric noir style of the Legacy OS interface. The atmosphere is calm and digital-first." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW6GQow6eJuAYl7f4ZcxK3KwbTUMkFedentPASZukdFlu4Uy2RQRREj9rQmrhLqtG5kegOHgBsH3zsuvFIT4A_DO6MKednBTeN1f9kwKgjSIpVsvMAhP4i5ql3sTC3Qn70STATQA8Jejam8OyA5oKMI-KDX3gzV4-UrQn0wo70iLFyAxQreGO1sYb1M-pKUEz3uPe9Wl4wealRwgPEMNJNN2bchBs_q27uZev4gnanG7h_-pybXRD-rQ">
+</div>
+</div>
+</div>
+</nav>
+<!-- Header Section -->
+<header class="relative pt-32 pb-12 max-w-7xl mx-auto z-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 items-center">
+<div class="text-center">
+<h1 class="font-display-lg text-display-lg text-primary tracking-tighter">Memory Archive</h1>
+<p class="font-body-lg text-body-lg text-on-surface-muted mt-2 max-w-xl">A curated stream of your digital existence. Preserved in aether, accessed in silence.</p>
+</div>
+<!-- Filter Pills -->
+<div class="flex flex-wrap gap-3 pb-2 justify-center">
+<button class="px-6 py-2 rounded-full glass-panel border-primary bg-white/10 text-primary font-label-md">All</button>
+<button class="px-6 py-2 rounded-full glass-panel hover:bg-glass-hover text-on-surface-variant font-label-md transition-all">Images</button>
+<button class="px-6 py-2 rounded-full glass-panel hover:bg-glass-hover text-on-surface-variant font-label-md transition-all">Notes</button>
+<button class="px-6 py-2 rounded-full glass-panel hover:bg-glass-hover text-on-surface-variant font-label-md transition-all">Events</button>
+<button class="px-6 py-2 rounded-full glass-panel hover:bg-glass-hover text-on-surface-variant font-label-md transition-all">AI Summaries</button>
+</div>
+</div>
+</header>
+<!-- Main Content: Masonry Grid -->
+<main class="relative max-w-7xl mx-auto z-10 pb-32">
+<div class="masonry-grid">
+<!-- Memory Card 1 -->
+<div class="masonry-item glass-panel neumorphic-lift rounded-lg overflow-hidden group" style="box-shadow: rgba(0, 0, 0, 0.4) 12.344px 21.1314px 40px;">
+<div class="aspect-[4/5] relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-700" data-alt="A high-fidelity grayscale photograph of a misty forest morning with light rays piercing through tall, dark pine trees. The mood is deeply nostalgic and atmospheric, rendered in high contrast with deep blacks and luminous whites, fitting the Aetheric Noir aesthetic of the digital archive." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIWOWNNvz1zuX6-Fhr0UdY-CiRpmMqo4-dupDq_w7-K21hVgI_81KA1-vG8i3DFaqwRcRW4nAdU-8VKD4RobfDgakv3gI0qwglinfZwYy8hdiaGOLPHdyASOAk1zLAkmhThGI_Y95vU7ZMVYGKd842nEQjFBAjUkOj3kp1QtVd3jqvSNTxO2KeYYXpShvYYz0bN6WHccB46gxNqm1HfPE4tl6g0WVtnhj298jvH9b8EpQUI4gr3Q83ZA">
+<div class="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+<span class="text-[10px] font-label-sm uppercase tracking-widest">Nostalgic</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-primary">The Whispering Woods</h3>
+<span class="text-[12px] font-label-sm text-on-surface-variant">Nov 2023</span>
+</div>
+<p class="text-on-surface-muted text-sm mb-4 leading-relaxed">AI Summary: A quiet morning walk that felt like a bridge between the past and the digital present.</p>
+<div class="flex flex-wrap gap-2">
+<span class="text-[10px] px-2 py-1 rounded border border-white/10 text-on-surface-variant">#solitude</span>
+<span class="text-[10px] px-2 py-1 rounded border border-white/10 text-on-surface-variant">#nature</span>
+</div>
+</div>
+</div>
+<!-- Memory Card 2 -->
+<div class="masonry-item glass-panel neumorphic-lift rounded-lg overflow-hidden group" style="box-shadow: rgba(0, 0, 0, 0.4) 12.304px 26.1865px 40px;">
+<div class="aspect-video relative overflow-hidden bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-white/20 text-6xl">auto_awesome</span>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-primary">The Neural Linkage</h3>
+<span class="text-[12px] font-label-sm text-on-surface-variant">Oct 2023</span>
+</div>
+<div class="mb-3 px-3 py-1 rounded-full bg-white/5 border border-white/10 inline-block">
+<span class="text-[10px] font-label-sm uppercase tracking-widest text-primary">Milestone</span>
+</div>
+<p class="text-on-surface-muted text-sm mb-4 leading-relaxed">AI Summary: You successfully archived your first 1,000 data nodes into the Legacy OS core system.</p>
+<div class="flex flex-wrap gap-2">
+<span class="text-[10px] px-2 py-1 rounded border border-white/10 text-on-surface-variant">#achievement</span>
+<span class="text-[10px] px-2 py-1 rounded border border-white/10 text-on-surface-variant">#system</span>
+</div>
+</div>
+</div>
+<!-- Memory Card 3 -->
+<div class="masonry-item glass-panel neumorphic-lift rounded-lg overflow-hidden group" style="box-shadow: rgba(0, 0, 0, 0.4) 12.404px 23.7325px 40px;">
+<div class="aspect-square relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-700" data-alt="A minimalist grayscale architectural shot of a brutalist concrete building with sharp shadows and clear geometric lines against a dark sky. The high-contrast black and white palette emphasizes form and texture, creating a cinematic and sophisticated atmosphere for the memory card." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrpmgIlYg3JPGsqZTtmCBQFdYk4530pnYgRvc0ePbUpOINp_q1rDaF3SI22efEbHJixduwT1VlP-I7MTWSjPFFS4x2axb1yWmAsd09SZ1ozX1rQassFCNN4HC8BPbuMFK3BcsDmoNwjKJ-OKySt81GAJJn8a3WFxx0c6KnpqPqfxbgNN5pzir6gXPeQPh6pOYpuAiCdQco81zsJrMIuzc4gAIAJl8Z24GaciTdXDCQ36JDkM_oShyM7Q">
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-primary">Brutalist Echoes</h3>
+<span class="text-[12px] font-label-sm text-on-surface-variant">Aug 2023</span>
+</div>
+<p class="text-on-surface-muted text-sm mb-4 leading-relaxed">AI Summary: Capturing the rigid beauty of the Central Terminal during a rainy afternoon layover.</p>
+<div class="flex flex-wrap gap-2">
+<span class="text-[10px] px-2 py-1 rounded border border-white/10 text-on-surface-variant">#architecture</span>
+<span class="text-[10px] px-2 py-1 rounded border border-white/10 text-on-surface-variant">#urban</span>
+</div>
+</div>
+</div>
+<!-- Memory Card 4 -->
+<div class="masonry-item glass-panel neumorphic-lift rounded-lg overflow-hidden group" style="box-shadow: rgba(0, 0, 0, 0.4) 17.12px 27.5845px 40px;">
+<div class="p-8 bg-gradient-to-br from-white/5 to-transparent border-b border-white/10">
+<span class="material-symbols-outlined text-primary mb-4 block">format_quote</span>
+<blockquote class="text-body-lg italic font-light text-on-surface">"Memory is the diary that we all carry about with us."</blockquote>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-primary">Reflective Thought</h3>
+<span class="text-[12px] font-label-sm text-on-surface-variant">Yesterday</span>
+</div>
+<p class="text-on-surface-muted text-sm mb-4 leading-relaxed">AI Summary: A sudden realization about the value of digital preservation while browsing the Vault.</p>
+<div class="flex flex-wrap gap-2">
+<span class="text-[10px] px-2 py-1 rounded border border-white/10 text-on-surface-variant">#philosophy</span>
+</div>
+</div>
+</div>
+<!-- Memory Card 5 -->
+<div class="masonry-item glass-panel neumorphic-lift rounded-lg overflow-hidden group" style="box-shadow: rgba(0, 0, 0, 0.4) 12.444px 20.0357px 40px;">
+<div class="aspect-[3/4] relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-700" data-alt="A moody, high-contrast grayscale close-up of an old analog film camera sitting on a dark wooden table. Soft light catches the metallic edges and the lens. The overall style is cinematic and intimate, fitting perfectly within the aetheric noir theme of a digital memory archive." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiWkdKAGzxWreG6KVxhCCdDQYfxAV5eRKN5kPL9QfwXAGTxC1S2bvpdxJwlhexWUabfGZzb7YZoRp4YMoI4jqzorcaR6PGuR7vj9c0BAFFtuLFD1qN-gAEYteGrGz-VwtQm7IpeP3RaDY3QwbMeT6ZPJDBFWy4Cyeh9CdfVesXc7by7NTbfFVrExsJ-qR6In_aciANdGgHJ11YEFe032qUxGF-4gHeZ3nzwnsmU8JiKFU0yGx8E2oBVg">
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-primary">Analog Roots</h3>
+<span class="text-[12px] font-label-sm text-on-surface-variant">Sep 2023</span>
+</div>
+<p class="text-on-surface-muted text-sm mb-4 leading-relaxed">AI Summary: Exploring the physical origins of our visual history before the transition to Legacy OS.</p>
+<div class="flex flex-wrap gap-2">
+<span class="text-[10px] px-2 py-1 rounded border border-white/10 text-on-surface-variant">#vintage</span>
+<span class="text-[10px] px-2 py-1 rounded border border-white/10 text-on-surface-variant">#history</span>
+</div>
+</div>
+</div>
+<!-- Memory Card 6 -->
+<div class="masonry-item glass-panel neumorphic-lift rounded-lg overflow-hidden group" style="box-shadow: rgba(0, 0, 0, 0.4) 12.444px 30.179px 40px;">
+<div class="aspect-video relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-700" data-alt="A sweeping wide-angle grayscale shot of a lonely desert road stretching toward a dark, stormy horizon. Dramatic clouds fill the sky, highlighted by silver linings. The image is stark, powerful, and evokes a sense of journey and distance within the digital memory archive's monochrome world." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB41v8ChmFNh6_NQHE1P6CAqj0N77uVQW-ojrnwrEqEc4LwANpK9nXQ4hyH9ZXrd-IbxCELU4q35Ctyvtb9SBqGyMxhTa7DFWG-SSL9spFfAfbWKaU8bguMK2NQygp5_zVFuLbBkWkkGanBRWPTGBYgtoJutaP1nHjoNmwCdeBHmhIg8y51gUw22-mxAZfgfvxPFHARqCoWKyJ2aj18BpH_TWl7dVwYakrobvJsW74ac_P63LEAoFuaHg">
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-primary">The Long Road</h3>
+<span class="text-[12px] font-label-sm text-on-surface-variant">July 2023</span>
+</div>
+<p class="text-on-surface-muted text-sm mb-4 leading-relaxed">AI Summary: A solo journey where the destination mattered less than the digital trail left behind.</p>
+<div class="flex flex-wrap gap-2">
+<span class="text-[10px] px-2 py-1 rounded border border-white/10 text-on-surface-variant">#travel</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB: Floating Glass Orb -->
+<button class="fixed bottom-8 right-8 z-50 w-16 h-16 rounded-full glass-panel breathing-glow flex items-center justify-center border-2 border-white/20 hover:border-white/50 transition-all duration-500 shadow-2xl group active:scale-90">
+<span class="material-symbols-outlined text-primary text-4xl group-hover:rotate-90 transition-transform duration-500">add</span>
+<div class="absolute inset-0 rounded-full bg-white/5 blur-xl group-hover:bg-white/10 transition-all"></div>
+</button>
+<!-- Side Nav (Hidden on Mobile) -->
+<aside class="fixed left-0 top-0 bottom-0 z-40 hidden md:flex flex-col w-20 bg-surface-container-lowest border-r border-glass-border backdrop-blur-[40px] items-center py-stack-md gap-8">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-surface text-[24px]" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+</div>
+<div class="flex flex-col gap-6 flex-1 justify-center">
+<button class="w-12 h-12 flex items-center justify-center rounded-xl hover:bg-glass-hover text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">home</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-xl bg-glass-hover text-primary border-r-2 border-primary">
+<span class="material-symbols-outlined">inventory_2</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-xl hover:bg-glass-hover text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">auto_awesome_motion</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-xl hover:bg-glass-hover text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">analytics</span>
+</button>
+</div>
+<div class="flex flex-col gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">help</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">policy</button>
+</div>
+</aside>
+<!-- Footer -->
+<footer class="mt-stack-lg border-t border-glass-border py-stack-md px-container-padding z-10 relative">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-4">
+<div class="font-label-sm text-on-surface-muted">© 2024 Legacy OS. Preserve your digital permanence.</div>
+<div class="flex gap-6">
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Ethics</a>
+</div>
+</div>
+</footer>
+<script>
+        // Atmospheric Dust Particles
+        const canvas = document.getElementById('dustCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5;
+                this.speedX = (Math.random() - 0.5) * 0.2;
+                this.speedY = (Math.random() - 0.5) * 0.2;
+                this.opacity = Math.random() * 0.5;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            resize();
+            for (let i = 0; i < 150; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+        init();
+        animate();
+
+        // Parallax and Micro-interactions
+        window.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.neumorphic-lift');
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const cardX = rect.left + rect.width / 2;
+                const cardY = rect.top + rect.height / 2;
+                
+                const distanceX = (mouseX - cardX) / 50;
+                const distanceY = (mouseY - cardY) / 50;
+                
+                // Subtle shadow following
+                if (Math.abs(mouseX - cardX) < 400 && Math.abs(mouseY - cardY) < 400) {
+                    card.style.boxShadow = `${12 - distanceX}px ${24 - distanceY}px 40px rgba(0, 0, 0, 0.4)`;
+                }
+            });
+        });
+    </script>
+
+
+</body></html>

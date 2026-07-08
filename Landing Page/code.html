@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Legacy OS | Your Life, Beautifully Remembered</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#c4c7c8",
+                    "surface-container-lowest": "#0e0e0e",
+                    "tertiary": "#ffffff",
+                    "on-tertiary-fixed": "#191c1d",
+                    "surface-bright": "#393939",
+                    "outline": "#8e9192",
+                    "glass-hover": "rgba(255, 255, 255, 0.06)",
+                    "error-container": "#93000a",
+                    "on-background": "#e2e2e2",
+                    "glass-border-hover": "rgba(255, 255, 255, 0.30)",
+                    "inverse-surface": "#e2e2e2",
+                    "surface-container-high": "#2a2a2a",
+                    "on-primary-fixed-variant": "#454747",
+                    "on-surface-muted": "rgba(226, 226, 226, 0.70)",
+                    "on-primary": "#2f3131",
+                    "on-secondary": "#303030",
+                    "surface": "#000000",
+                    "surface-container-highest": "#353535",
+                    "primary-fixed": "#e2e2e2",
+                    "secondary-fixed": "#e4e2e1",
+                    "glass-border": "rgba(255, 255, 255, 0.10)",
+                    "on-error-container": "#ffdad6",
+                    "background": "#000000",
+                    "surface-dim": "#131313",
+                    "on-secondary-fixed": "#1b1c1b",
+                    "on-tertiary-fixed-variant": "#444748",
+                    "inverse-on-surface": "#303030",
+                    "tertiary-fixed": "#e0e3e4",
+                    "glass-fill": "rgba(255, 255, 255, 0.03)",
+                    "on-secondary-container": "#b6b5b4",
+                    "secondary": "#c8c6c5",
+                    "on-primary-fixed": "#1a1c1c",
+                    "inverse-primary": "#5d5f5f",
+                    "surface-container-low": "#1b1b1b",
+                    "tertiary-fixed-dim": "#c4c7c8",
+                    "on-primary-container": "#636565",
+                    "error": "#ffb4ab",
+                    "primary": "#ffffff",
+                    "on-surface": "#e2e2e2",
+                    "surface-variant": "#353535",
+                    "surface-container": "#1f1f1f",
+                    "secondary-container": "#474746",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-secondary-fixed-variant": "#474746",
+                    "on-error": "#690005",
+                    "primary-fixed-dim": "#c6c6c7",
+                    "tertiary-container": "#e0e3e4",
+                    "outline-variant": "#444748",
+                    "primary-container": "#e2e2e2",
+                    "on-tertiary-container": "#626566",
+                    "on-tertiary": "#2d3132",
+                    "surface-tint": "#c6c6c7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding": "40px",
+                    "stack-lg": "48px",
+                    "stack-md": "24px",
+                    "stack-sm": "12px",
+                    "gutter": "24px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Geist", "sans-serif"],
+                    "body-md": ["Geist", "sans-serif"],
+                    "label-sm": ["Geist", "sans-serif"],
+                    "body-lg": ["Geist", "sans-serif"],
+                    "display-lg": ["Geist", "sans-serif"],
+                    "headline-lg": ["Geist", "sans-serif"],
+                    "headline-md": ["Geist", "sans-serif"],
+                    "label-md": ["Geist", "sans-serif"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Geist', sans-serif;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, rgba(0,0,0,1) 80%);
+        }
+        ::selection {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary/20">
+<!-- Header / TopNavBar -->
+<header class="flex justify-between items-center px-8 py-3 fixed top-0 left-0 right-0 z-50 rounded-full mt-6 mx-auto w-[95%] max-w-7xl backdrop-blur-[40px] border border-glass-border bg-glass-fill shadow-2xl transition-transform hover:scale-[1.01] active:scale-[0.99]">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full border border-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[18px]">all_inclusive</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">Legacy OS</span>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-label-md text-label-md text-primary border-b border-primary pb-1 transition-all" href="#">Timeline</a>
+<a class="font-label-md text-label-md text-on-surface-muted hover:text-primary transition-all" href="#">Journal</a>
+<a class="font-label-md text-label-md text-on-surface-muted hover:text-primary transition-all" href="#">The Vault</a>
+<a class="font-label-md text-label-md text-on-surface-muted hover:text-primary transition-all" href="#">Colluction</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-muted">search</span>
+<input class="bg-surface-container-high/50 border-none rounded-full pl-10 pr-4 py-1.5 text-sm focus:ring-1 focus:ring-primary w-48 transition-all focus:w-64" placeholder="Search memories..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md font-bold hover:scale-105 active:scale-95 transition-transform">Get Access</button></div>
+</header>
+<main class="relative">
+<!-- Hero Section -->
+<section class="min-h-screen pt-40 pb-20 flex flex-col items-center justify-center text-center px-container-padding relative hero-gradient overflow-hidden">
+<div class="absolute inset-0 z-0">
+</div>
+<div class="relative z-10 max-w-4xl">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-glass-border bg-glass-fill mb-8 animate-fade-in">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-label-sm font-label-sm uppercase tracking-widest text-on-surface-muted">Now with AI-powered memory search</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-white mb-6">
+                    Your Life, <br/>
+<span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-on-surface-muted">Beautifully Remembered.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-muted mb-10 max-w-2xl mx-auto">
+                    Legacy OS is your personal life operating system — a cinematic digital universe to preserve, explore, and relive every moment that matters.
+                </p>
+<div class="flex flex-wrap justify-center gap-4">
+<button class="bg-white text-black px-10 py-4 rounded-full font-label-md text-label-md font-bold flex items-center gap-2 hover:scale-105 transition-transform group">
+                        Start for free
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="bg-glass-fill border border-glass-border text-white px-10 py-4 rounded-full font-label-md text-label-md font-bold hover:bg-glass-hover transition-colors">
+                        Watch demo
+                    </button>
+</div>
+</div>
+<!-- Spatial Tablet Graphic -->
+<div class="mt-20 w-full max-w-6xl mx-auto relative group">
+<div class="absolute -inset-20 bg-white/5 blur-[120px] rounded-full pointer-events-none group-hover:bg-white/10 transition-all duration-1000"></div>
+<div class="glass-panel p-4 rounded-[40px] shadow-2xl relative overflow-hidden active:scale-[0.99]" style="--mouse-x: 1019px; --mouse-y: 369.20001220703125px;">
+<img alt="A high-fidelity spatial UI dashboard displayed on the screen of a sleek, modern premium laptop. The laptop is positioned facing fully forward, straight-on view. The dashboard on the screen features a high-contrast black and white glassmorphic interface. Pure black background. Cinematic lighting, ultra-sharp focus. Consistent with the Aetheric Noir aesthetic." class="w-full h-auto rounded-[32px] transition-all duration-700 cursor-pointer object-cover aspect-video hover:scale-[1.02] active:scale-[0.98]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLyZuffuJ-5jvYBuWzkuhtDdvjjAJzyaCR0QQLzD4EtB75KsrsOFxXeLCv2-ekHHX05soXDYGtxG9Q6sOV9DaAddd8n-HBdvV0eiQOWCESpTVHTElE68vprcwt_sG_9qzNpC1ikiKqRlGW_HK0oj3JOQKKG1U0nY2hin1Zr1avyWqdcSHjGYMkhkGXDmbj8PNh1TzHXRdsxXxOW57jApQS_f_BPydjeCNsldrViAHTnPoVlJuFQaFnyv_47-R2e0qJjsBMuWlf_O4i"/>
+<!-- Feature Tags on Tablet Overlay -->
+</div>
+</div>
+</section>
+<!-- Spatial Architecture Grid -->
+<section class="py-stack-lg px-container-padding max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-white mb-4">Spatial Architecture</h2>
+<p class="font-body-md text-body-md text-on-surface-muted">Designed for the depth of human emotion.</p>
+</div>
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Memory Search (Large Bento) -->
+<div class="col-span-12 md:col-span-8 glass-panel p-10 rounded-lg flex flex-col justify-between group h-[480px]" style="--mouse-x: 543px; --mouse-y: 69.9000244140625px;">
+<div>
+<div class="flex justify-between items-start mb-8">
+<div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[28px]">search_spark</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-muted/30 text-[40px]">memory</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-white mb-4">Memory Search</h3>
+<p class="font-body-md text-body-md text-on-surface-muted max-w-md mb-6">
+                            Semantic AI that understands your life. Ask "When did I last feel truly inspired?" and watch your legacy weave together.
+                        </p>
+<a class="inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:underline group" href="#">
+                            Explore Neural Search
+                            <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">north_east</span>
+</a>
+</div>
+<div class="mt-8 h-40 overflow-hidden rounded-xl relative">
+<img class="w-full h-full object-cover grayscale brightness-75 group-hover:scale-110 transition-transform duration-1000" data-alt="A high-contrast monochrome close-up of a digital mesh network, representing neural connections in an AI search engine. Bright white nodes connect with thin gray lines over a deep black background, creating a sense of infinite data processing and organized complexity. The style is sleek, cinematic, and minimal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASp-mXAeSLSPEom6QTEKGZ5H4u0njn44BFOh0hNOIBH0eUuBPlrOx-n1e6pX2f9zkMuwNXeFqJPqsqvonycqxT_b0h061LKZx2hRl6b-1nAtuAYah_sKV1q3RqgJ52HqiHLbX48oAnLy2AjybOickfnpAnSusKtuE07ZRJDqVex1pjTeO-BwTioGS2-1HHH_xQo1h3R81OOZD5UtlCnZ2hdVQxO3tO69fw-8cAgZngXJm5Z1FXfZYwdIdgDNa8OtOQ4iRGNto-ouiP"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+</div>
+</div>
+<!-- The Timeline (Vertical Bento) -->
+<div class="col-span-12 md:col-span-4 glass-panel p-10 rounded-lg flex flex-col h-[480px]" style="--mouse-x: 29px; --mouse-y: 137.9000244140625px;">
+<div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-primary text-[28px]">schedule</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-white mb-4">The Timeline</h3>
+<p class="font-body-md text-body-md text-on-surface-muted mb-auto">
+                        A cinematic, scrollable river of time that grows as you do. Visualized in 3D space for effortless navigation.
+                    </p>
+<div class="mt-8 space-y-4">
+<div class="flex items-center gap-4">
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-black bg-surface-container-high overflow-hidden">
+<div class="w-full h-full bg-white/10 backdrop-blur-md"></div>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-black bg-surface-container-high overflow-hidden">
+<div class="w-full h-full bg-white/20 backdrop-blur-md"></div>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-black bg-primary flex items-center justify-center text-black font-bold text-xs">
+                                    +12
+                                </div>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-muted">Recently archived moments</span>
+</div>
+</div>
+</div>
+<!-- The Vault (Small Bento) -->
+<div class="col-span-12 md:col-span-4 glass-panel p-10 rounded-lg h-[400px] flex flex-col">
+<div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-primary text-[28px]">lock</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-white mb-4">The Vault</h3>
+<p class="font-body-md text-body-md text-on-surface-muted">
+                        Encryption that lives beyond you. Secure your digital legacy with post-quantum security protocols and multi-generational access keys.
+                    </p>
+</div>
+<!-- Digital Synthesis (Medium Bento) -->
+<div class="col-span-12 md:col-span-8 glass-panel p-10 rounded-lg h-[400px] flex flex-col md:flex-row gap-8 overflow-hidden">
+<div class="flex-1 flex flex-col justify-center">
+<div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-primary text-[28px]">hub</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-white mb-4">Digital Synthesis</h3>
+<p class="font-body-md text-body-md text-on-surface-muted">
+                            Connect your wearables, photos, and calendar to create a living digital twin of your personal growth journey.
+                        </p>
+</div>
+<div class="flex-1 relative flex items-center justify-center">
+<div class="w-48 h-48 rounded-full border border-white/10 flex items-center justify-center animate-pulse">
+<div class="w-32 h-32 rounded-full border border-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-[64px] text-white/40">query_stats</span>
+</div>
+</div>
+<div class="absolute top-0 right-0 w-24 h-24 bg-white/5 blur-3xl rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Section (Cinematic Minimalist) -->
+<section class="py-stack-lg border-y border-glass-border bg-glass-fill/20">
+<div class="max-w-7xl mx-auto px-container-padding">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+<div>
+<div class="text-display-lg text-white font-display-lg mb-2">10K+</div>
+<div class="text-label-md font-label-md text-on-surface-muted uppercase tracking-[0.2em]">Memories Stored</div>
+</div>
+<div>
+<div class="text-display-lg text-white font-display-lg mb-2">2K+</div>
+<div class="text-label-md font-label-md text-on-surface-muted uppercase tracking-[0.2em]">Happy Users</div>
+</div>
+<div>
+<div class="text-display-lg text-white font-display-lg mb-2">98%</div>
+<div class="text-label-md font-label-md text-on-surface-muted uppercase tracking-[0.2em]">Retention Rate</div>
+</div>
+<div>
+<div class="text-display-lg text-white font-display-lg mb-2">∞</div>
+<div class="text-label-md font-label-md text-on-surface-muted uppercase tracking-[0.2em]">Stories Told</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-stack-lg px-container-padding flex flex-col items-center justify-center text-center">
+<div class="glass-panel p-16 rounded-xl max-w-5xl w-full relative overflow-hidden">
+<div class="absolute inset-0 z-0">
+</div>
+<div class="relative z-10">
+<h2 class="font-display-lg text-display-lg text-white mb-8">Begin Your Legacy</h2>
+<p class="font-body-lg text-body-lg text-on-surface-muted mb-12 max-w-2xl mx-auto">
+                        Your memories deserve a permanent home. Join thousands of users who are building their digital immortality today.
+                    </p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<button class="bg-white text-black px-12 py-5 rounded-full font-label-md text-label-md font-bold hover:scale-105 transition-transform">
+                            Create Free Account
+                        </button>
+<button class="bg-glass-fill border border-glass-border text-white px-12 py-5 rounded-full font-label-md text-label-md font-bold hover:bg-glass-hover transition-colors">
+                            Explore Pricing
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-glass-border bg-surface">
+<div class="max-w-7xl mx-auto px-container-padding py-stack-lg flex flex-col md:flex-row justify-between items-center gap-stack-sm">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full border border-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[14px]">all_inclusive</span>
+</div>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">Legacy OS</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-muted max-w-xs text-center md:text-left">
+                    © 2024 Legacy OS. All rights preserved in the aether. Your life, beautifully remembered.
+                </p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-label-sm text-label-sm text-on-surface-muted hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="font-label-sm text-label-sm text-on-surface-muted hover:text-primary transition-colors" href="#">Terms</a>
+<a class="font-label-sm text-label-sm text-on-surface-muted hover:text-primary transition-colors" href="#">Manifesto</a>
+<a class="font-label-sm text-label-sm text-on-surface-muted hover:text-primary transition-colors" href="#">Support</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full glass-panel flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+<button class="w-10 h-10 rounded-full glass-panel flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">language</span>
+</button>
+</div>
+</div>
+</footer>
+<!-- FAB for quick action (Dashboard Context) -->
+<button class="fixed bottom-10 right-10 w-16 h-16 rounded-full bg-white text-black shadow-2xl flex items-center justify-center z-[100] hover:scale-110 active:scale-90 transition-transform group md:hidden">
+<span class="material-symbols-outlined text-[32px] group-hover:rotate-90 transition-transform">add</span>
+</button>
+<script>
+        // Micro-interactions for glass panels
+        document.querySelectorAll('.glass-panel').forEach(panel => {
+            panel.addEventListener('mousemove', (e) => {
+                const rect = panel.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                panel.style.setProperty('--mouse-x', `${x}px`);
+                panel.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Subtle parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroText = document.querySelector('h1');
+            if(heroText) {
+                heroText.style.transform = `translateY(${scrolled * 0.15}px)`;
+            }
+        });
+    </script>
+</body></html>

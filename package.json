@@ -1,0 +1,56 @@
+{
+  "name": "Legacy OS",
+  "version": "1.0.0",
+  "description": "AI-powered digital memory vault - preserve photos, videos, journal entries, and milestones in a beautiful timeline",
+  "type": "full-stack",
+  "frontend": {
+    "framework": "Next.js 14",
+    "language": "JavaScript",
+    "styling": "Tailwind CSS",
+    "directory": "./frontend"
+  },
+  "backend": {
+    "framework": "Express.js",
+    "language": "Node.js",
+    "database": "MySQL",
+    "directory": "./backend"
+  },
+  "database": {
+    "type": "MySQL",
+    "schema": "./database/schema.sql"
+  },
+  "features": [
+    "User Authentication with JWT",
+    "Photo Gallery with Masonry Layout",
+    "Video Upload and Management",
+    "Rich Text Journal Entries",
+    "Milestone Tracking",
+    "Interactive Timeline",
+    "User Dashboard with Analytics",
+    "Responsive Mobile Design",
+    "Dark Mode Theme",
+    "Cloudinary Integration"
+  ],
+  "scripts": {
+    "setup": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "frontend-dev": "cd frontend && npm run dev",
+    "backend-dev": "cd backend && npm run dev",
+    "frontend-build": "cd frontend && npm run build",
+    "backend-start": "cd backend && npm start"
+  },
+  "documentation": {
+    "setup": "./SETUP_GUIDE.md",
+    "api": "./API_REFERENCE.md",
+    "deployment": "./DEPLOYMENT_GUIDE.md"
+  },
+  "author": "Legacy OS Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "react-is": "^18.3.1",
+    "recharts": "^3.8.1"
+  }
+}
