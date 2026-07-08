@@ -11,7 +11,7 @@ A premium, production-quality full-stack web application for preserving photos, 
 
 ---
 
-## 🌟 Features
+## 🌟 Featuress
 
 ### 📸 Photo Gallery
 - **Masonry Layout** – Beautiful grid layout with hover effects
