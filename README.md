@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎬 Legacy OS
+# Legacy OS
 
 ### *Your Life, Organized Like a Movie*
 
