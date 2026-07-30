@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Shared axios instance; base URL is injected at build time via env var.
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const api = axios.create({
