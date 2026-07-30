@@ -1,3 +1,4 @@
+// Milestone routes — all endpoints require an authenticated user.
 const express = require('express');
 const router = express.Router();
 const milestoneController = require('../controllers/milestoneController');
