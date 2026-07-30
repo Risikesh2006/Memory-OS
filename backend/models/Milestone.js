@@ -1,6 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
+/**
+ * Milestone model — represents a single tracked life event owned by a user.
+ */
 const Milestone = sequelize.define('Milestone', {
   id: {
     type: DataTypes.UUID,
