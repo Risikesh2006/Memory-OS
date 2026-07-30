@@ -1,6 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
+/**
+ * Journal model — represents a single written journal entry owned by a user.
+ */
 const Journal = sequelize.define('Journal', {
   id: {
     type: DataTypes.UUID,
