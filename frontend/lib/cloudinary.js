@@ -1,5 +1,6 @@
 // Frontend - Cloudinary Integration Helper
-// Configure image/video uploads to Cloudinary
+// Configure image/video uploads to Cloudinary.
+// Uses unsigned upload presets so uploads can happen directly from the browser.
 
 const cloudinaryService = {
   // Upload image
