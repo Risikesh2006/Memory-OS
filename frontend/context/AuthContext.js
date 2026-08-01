@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useEffect } from 'react';
 
+/** Provides the current user, auth token, and session state to the app. */
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
