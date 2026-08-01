@@ -1,3 +1,7 @@
+/**
+ * Analytics controller — aggregates per-user counts across all memory types
+ * for the dashboard summary view.
+ */
 const Photo = require('../models/Photo');
 const Video = require('../models/Video');
 const Journal = require('../models/Journal');
