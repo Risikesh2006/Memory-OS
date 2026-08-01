@@ -1,3 +1,6 @@
+/**
+ * Device controller — manages the authenticated user's connected/trusted devices.
+ */
 const Device = require('../models/Device');
 
 // GET /api/devices -- list the current user's connected devices
