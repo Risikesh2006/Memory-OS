@@ -604,7 +604,7 @@ This project is licensed under the **MIT License** — see [LICENSE](LICENSE) fo
 
 - GitHub: [Risikesh2006]
 - Email: [risisonu2006@gmail.com]
-- Portfolio: [your-portfolio]
+- Portfolio: [https://risikesh-portfolio.vercel.app/]
 
 ---
 
