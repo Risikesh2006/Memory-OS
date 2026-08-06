@@ -602,7 +602,7 @@ This project is licensed under the **MIT License** — see [LICENSE](LICENSE) fo
 
 **Legacy OS Development Team**
 
-- GitHub: [your-github]
+- GitHub: [Risikesh2006]
 - Email: [your-email]
 - Portfolio: [your-portfolio]
 
