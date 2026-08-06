@@ -610,15 +610,15 @@ This project is licensed under the **MIT License** — see [LICENSE](LICENSE) fo
 
 ## 💬 Support
 
-For support, email **support@legacyos.com** or open an issue on GitHub.
+For support, email **risisonu2006@gmail.com** or open an issue on GitHub.
 
 ## 📞 Contact
 
 | Type | Email |
 |---|---|
-| ❓ Questions | info@legacyos.com |
-| 🐛 Bug Report | bugs@legacyos.com |
-| ✨ Feature Request | features@legacyos.com |
+| ❓ Questions | risisonu2006@gmail.com |
+| 🐛 Bug Report | risisonu2006@gmail.com |
+| ✨ Feature Request | risisonu2006@gmail.com |
 
 ---
 
