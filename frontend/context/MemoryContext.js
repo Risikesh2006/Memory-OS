@@ -92,12 +92,19 @@ const SAMPLE_MEMORIES = [
 ];
 
 // Reducer Actions
+/** Adds a new memory to the user's archive stream */
 const ADD_MEMORY = 'ADD_MEMORY';
+/** Deletes a memory from the user's archive stream by its ID */
 const DELETE_MEMORY = 'DELETE_MEMORY';
+/** Updates an existing memory's content, title, tags, or description */
 const UPDATE_MEMORY = 'UPDATE_MEMORY';
+/** Toggles the favorite status of a specific memory */
 const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
+/** Sets the current category filter (all, favorites, images, etc.) */
 const SET_FILTER = 'SET_FILTER';
+/** Sets the search query string to filter memories by text match */
 const SET_SEARCH_QUERY = 'SET_SEARCH_QUERY';
+/** Initializes the memories list from local storage or default sample data */
 const SET_MEMORIES = 'SET_MEMORIES';
 
 // Initial State
