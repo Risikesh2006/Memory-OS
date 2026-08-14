@@ -1,8 +1,18 @@
 import api from './api';
 
-// Auth APIs
+/**
+ * Authentication API Endpoints
+ */
 export const authAPI = {
+  /**
+   * Register a new user
+   * @param {Object} data - Registration details (fullName, email, password)
+   */
   register: (data) => api.post('/auth/register', data),
+  /**
+   * Log in an existing user
+   * @param {Object} data - Login credentials (email, password)
+   */
   login: (data) => api.post('/auth/login', data),
 };
 
