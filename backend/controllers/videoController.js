@@ -71,7 +71,7 @@ exports.searchVideos = async (req, res) => {
     const videos = await Video.findAll({
       where: {
         userId: req.user.id,
-        title: { [Op.like]: `%${q}%` },
+        title: { [Op.iLike]: `%${q}%` },
       },
     });
     res.json(videos);

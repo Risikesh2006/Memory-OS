@@ -8,6 +8,7 @@ router.use(authMiddleware);
 router.post('/', controller.create);
 router.get('/', controller.getAll);
 router.get('/:id', controller.getOne);
+router.post('/:id/open', controller.open);
 router.delete('/:id', controller.delete);
 
 module.exports = router;

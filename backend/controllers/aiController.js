@@ -2,21 +2,30 @@ const Photo = require('../models/Photo');
 const Video = require('../models/Video');
 const Journal = require('../models/Journal');
 const Milestone = require('../models/Milestone');
-const ChatHistory = require('../models/ChatHistory');
+const ChatSession = require('../models/ChatSession');
+const ChatMessage = require('../models/ChatMessage');
+const AiJob = require('../models/AiJob');
 const { Op } = require('sequelize');
+const { getProvider, local } = require('../services/ai');
+
+async function getOrCreateDefaultSession(userId) {
+  let session = await ChatSession.findOne({ where: { userId }, order: [['updatedAt', 'DESC']] });
+  if (!session) session = await ChatSession.create({ userId, title: 'Memory Chat' });
+  return session;
+}
 
 // Helper: search across all memory types
 async function searchMemories(userId, query) {
   const q = `%${query}%`;
   const where = { userId };
-  const likeTitle = { title: { [Op.like]: q } };
-  const likeDesc = { [Op.or]: [{ title: { [Op.like]: q } }, { description: { [Op.like]: q } }] };
+  const likeTitle = { title: { [Op.iLike]: q } };
+  const likeDesc = { [Op.or]: [{ title: { [Op.iLike]: q } }, { description: { [Op.iLike]: q } }] };
 
   const [photos, videos, journals, milestones] = await Promise.all([
     Photo.findAll({ where: { ...where, ...likeTitle }, raw: true }),
     Video.findAll({ where: { ...where, ...likeTitle }, raw: true }),
     Journal.findAll({
-      where: { ...where, [Op.or]: [{ title: { [Op.like]: q } }, { content: { [Op.like]: q } }] },
+      where: { ...where, [Op.or]: [{ title: { [Op.iLike]: q } }, { content: { [Op.iLike]: q } }] },
       raw: true,
     }),
     Milestone.findAll({ where: { ...where, ...likeDesc }, raw: true }),
@@ -185,31 +194,89 @@ exports.chat = async (req, res) => {
       response = `I'm your Legacy OS memory assistant! You can ask me things like:\n• "How many photos do I have?"\n• "Show memories from 2025"\n• "When was my first milestone?"\n• "Tell me about my travel memories"`;
     }
 
-    // Save to chat history
-    await ChatHistory.create({
-      userId: req.user.id,
-      message,
-      response,
-      memoryRefs,
-    });
+    // If a real generative provider is configured, use it to phrase a grounded answer from the
+    // exact same retrieved memories -- never the user's whole library. Falls back to the
+    // deterministic rule-based `response` above (computed with no network dependency) if the
+    // provider is unavailable or errors, so chat never breaks when no AI key is set.
+    const provider = getProvider();
+    let usedProvider = local.name;
+    if (provider.name !== 'local' && relevantMemories.length > 0) {
+      try {
+        const grounded = await provider.generateText({
+          prompt: message,
+          context: relevantMemories.slice(0, 8).map((m) => ({
+            text: `(${m.memoryType}, ${new Date(m.date).toDateString()}) ${m.title}: ${m.description || m.content || ''}`.slice(0, 500),
+          })),
+        });
+        if (grounded) {
+          response = grounded;
+          usedProvider = provider.name;
+        }
+      } catch (err) {
+        console.error('[ai chat] provider generateText failed, using rule-based fallback', err.message);
+      }
+    }
 
-    res.json({ response, memoryRefs });
+    const session = await getOrCreateDefaultSession(req.user.id);
+    await ChatMessage.create({ sessionId: session.id, userId: req.user.id, role: 'user', content: message });
+    await ChatMessage.create({
+      sessionId: session.id,
+      userId: req.user.id,
+      role: 'assistant',
+      content: response,
+      citations: memoryRefs,
+      provider: usedProvider,
+      model: usedProvider === 'local' ? local.model : provider.model,
+    });
+    session.changed('updatedAt', true);
+    await session.save();
+
+    res.json({ response, memoryRefs, provider: usedProvider });
   } catch (error) {
     res.status(500).json({ message: 'Chat failed', error: error.message });
   }
 };
 
-// Get chat history
+// Get chat history (default session)
 exports.getChatHistory = async (req, res) => {
   try {
-    const history = await ChatHistory.findAll({
-      where: { userId: req.user.id },
+    const session = await getOrCreateDefaultSession(req.user.id);
+    const history = await ChatMessage.findAll({
+      where: { sessionId: session.id, userId: req.user.id },
       order: [['createdAt', 'ASC']],
-      limit: 100,
+      limit: 200,
     });
     res.json(history);
   } catch (error) {
     res.status(500).json({ message: 'Failed to fetch chat history', error: error.message });
+  }
+};
+
+// POST /api/ai/tags/suggest  { text } -- synchronous stand-in for the async tag-suggestion job
+// described in the spec. Real deployments should move this behind the ai_jobs queue once a
+// background worker exists; for now it runs inline and still records an AiJob row for auditing.
+exports.suggestTags = async (req, res) => {
+  const job = await AiJob.create({
+    userId: req.user.id,
+    jobType: 'tag_suggestion',
+    status: 'running',
+    provider: getProvider().name,
+    startedAt: new Date(),
+  });
+
+  try {
+    const { text } = req.body;
+    if (!text) {
+      await job.update({ status: 'failed', errorMessage: 'text is required', completedAt: new Date() });
+      return res.status(400).json({ message: 'text is required' });
+    }
+
+    const tags = local.suggestTags(text);
+    await job.update({ status: 'succeeded', progress: 100, output: { tags }, completedAt: new Date() });
+    res.json({ tags, jobId: job.id });
+  } catch (error) {
+    await job.update({ status: 'failed', errorMessage: error.message, completedAt: new Date() });
+    res.status(500).json({ message: 'Tag suggestion failed', error: error.message });
   }
 };
 

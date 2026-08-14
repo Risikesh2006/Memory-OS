@@ -2,15 +2,24 @@ const Photo = require('../models/Photo');
 const Video = require('../models/Video');
 const Journal = require('../models/Journal');
 const Milestone = require('../models/Milestone');
+const Vault = require('../models/Vault');
+const TimeCapsule = require('../models/TimeCapsule');
 
 exports.getStats = async (req, res) => {
   try {
     const userId = req.user.id;
-    const [photoCount, videoCount, journalCount, milestoneCount] = await Promise.all([
+    const [photoCount, videoCount, journalCount, milestoneCount, vaultCount, capsuleCount, favouriteCount] = await Promise.all([
       Photo.count({ where: { userId } }),
       Video.count({ where: { userId } }),
       Journal.count({ where: { userId } }),
       Milestone.count({ where: { userId } }),
+      Vault.count({ where: { userId } }),
+      TimeCapsule.count({ where: { userId } }),
+      Promise.all([
+        Photo.count({ where: { userId, isFavourite: true } }),
+        Video.count({ where: { userId, isFavourite: true } }),
+        Journal.count({ where: { userId, isFavourite: true } }),
+      ]).then((counts) => counts.reduce((a, b) => a + b, 0)),
     ]);
 
     // Monthly counts for chart
@@ -45,6 +54,9 @@ exports.getStats = async (req, res) => {
         videos: videoCount,
         journals: journalCount,
         milestones: milestoneCount,
+        vaults: vaultCount,
+        capsules: capsuleCount,
+        favourites: favouriteCount,
         total: photoCount + videoCount + journalCount + milestoneCount,
       },
       monthlyData,

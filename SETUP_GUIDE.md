@@ -1,69 +1,61 @@
 # Legacy OS - Installation & Setup Guide
 
+> **Note:** As of this guide's latest revision, Legacy OS runs on **Supabase (hosted Postgres +
+> Auth)** instead of MySQL. `database/schema.sql` is kept only for historical reference -- the
+> real schema lives in `supabase/migrations/*.sql`.
+
 ## Prerequisites
 
-- Node.js (v16 or higher)
-- MySQL (v5.7 or higher)
+- Node.js (v18 or higher)
+- A Supabase project (free tier is fine) -- https://supabase.com
+- Supabase CLI (`npx supabase --version` works with no install; or `npm i -g supabase`)
 - npm or yarn
 - Cloudinary account (for image/video storage)
+- An SMS/OTP provider connected in Supabase (Authentication -> Providers -> Phone) if you want
+  phone sign-in to actually deliver codes. Without it, `/api/auth/otp/request` will return a 503.
 
 ## Project Structure
 
 ```
 Legacy OS/
-├── frontend/          # Next.js frontend application
-├── backend/           # Express.js backend API
-└── database/          # MySQL database schema
+├── frontend/                # Next.js frontend application
+├── backend/                 # Express.js backend API
+├── supabase/migrations/     # Postgres schema + RLS policies (source of truth)
+└── database/schema.sql      # Superseded MySQL schema, kept for history only
 ```
 
 ---
 
 ## Backend Setup
 
-### 1. Navigate to Backend Directory
+### 1. Create a Supabase project
+Create a project at https://supabase.com/dashboard, then from **Project Settings**:
+- **API**: copy the Project URL, `anon` key, `service_role` key, and JWT Secret.
+- **Database**: copy the connection string (URI) for `DATABASE_URL`.
+
+### 2. Apply the database migrations
 ```bash
-cd backend
+cd "Legacy OS"
+npx supabase login
+npx supabase link --project-ref <your-project-ref>
+npx supabase db push   # applies everything in supabase/migrations/
 ```
 
-### 2. Install Dependencies
+### 3. Navigate to Backend Directory
 ```bash
+cd backend
 npm install
 ```
 
-### 3. Create `.env` File
-Copy `.env.example` to `.env` and fill in your values:
-
+### 4. Create `.env` File
 ```bash
 cp .env.example .env
 ```
 
-**Update the following in `.env`:**
-```
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=your_mysql_password
-DB_NAME=legacy_os
-DB_PORT=3306
-
-JWT_SECRET=your_super_secret_key_generate_a_random_string
-
-API_PORT=5000
-
-CLOUDINARY_CLOUD_NAME=your_cloudinary_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-```
-
-### 4. Create MySQL Database
-
-Option A: Using MySQL Command Line
-```bash
-mysql -u root -p < ../database/schema.sql
-```
-
-Option B: Using MySQL Workbench
-- Copy the contents of `database/schema.sql`
-- Paste and execute in MySQL Workbench
+Fill in the values from step 1 (`DATABASE_URL`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`,
+`SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_JWT_SECRET`), plus your Cloudinary credentials. Leave
+`AI_PROVIDER=local` unless you have an OpenAI (or other) API key -- see `.env.example` for the
+full list with descriptions.
 
 ### 5. Start Backend Server
 

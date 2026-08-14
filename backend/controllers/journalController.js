@@ -89,7 +89,7 @@ exports.searchJournals = async (req, res) => {
     const journals = await Journal.findAll({
       where: {
         userId: req.user.id,
-        title: { [Op.like]: `%${q}%` },
+        title: { [Op.iLike]: `%${q}%` },
       },
       order: [['createdAt', 'DESC']],
     });

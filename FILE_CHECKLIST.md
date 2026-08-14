@@ -1,5 +1,10 @@
 # Legacy OS - Complete File Checklist ✅
 
+> **Stale snapshot notice:** this checklist reflects the original MVP file layout (June 2025) and
+> does not include the many files added since (Vault/Capsule/Chat/Documentary/Museum/Replay
+> components, `supabase/migrations/`, `backend/services/ai/`, device/vault controllers, etc.).
+> Use `git ls-files` or the repo itself for the current file list.
+
 ## Project Structure - All Files Created
 
 ### Root Level

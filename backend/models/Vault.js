@@ -1,7 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const Collection = sequelize.define('Collection', {
+// pin_hash is a bcrypt hash of the numeric PIN -- never the plaintext PIN. See
+// controllers/vaultController.js for the hash/compare + rate-limiting logic.
+const Vault = sequelize.define('Vault', {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -25,20 +27,31 @@ const Collection = sequelize.define('Collection', {
     field: 'cover_image',
     allowNull: true,
   },
-  sortOrder: {
+  yearLabel: {
+    type: DataTypes.STRING,
+    field: 'year_label',
+    allowNull: true,
+  },
+  pinHash: {
+    type: DataTypes.STRING,
+    field: 'pin_hash',
+    allowNull: false,
+  },
+  failedAttempts: {
     type: DataTypes.INTEGER,
-    field: 'sort_order',
+    field: 'failed_attempts',
     defaultValue: 0,
   },
-  visibility: {
-    type: DataTypes.STRING,
-    defaultValue: 'private',
+  lockedUntil: {
+    type: DataTypes.DATE,
+    field: 'locked_until',
+    allowNull: true,
   },
 }, {
-  tableName: 'collections',
+  tableName: 'vaults',
   timestamps: true,
   createdAt: 'created_at',
   updatedAt: 'updated_at',
 });
 
-module.exports = Collection;
+module.exports = Vault;

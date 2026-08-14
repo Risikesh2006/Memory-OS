@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const User = require('./User');
 
 const Photo = sequelize.define('Photo', {
   id: {
@@ -10,11 +9,8 @@ const Photo = sequelize.define('Photo', {
   },
   userId: {
     type: DataTypes.UUID,
+    field: 'user_id',
     allowNull: false,
-    references: {
-      model: User,
-      key: 'id',
-    },
   },
   title: {
     type: DataTypes.STRING,
@@ -30,12 +26,62 @@ const Photo = sequelize.define('Photo', {
   },
   cloudinaryId: {
     type: DataTypes.STRING,
+    field: 'cloudinary_id',
+    allowNull: true,
+  },
+  eventDate: {
+    type: DataTypes.DATE,
+    field: 'event_date',
+    allowNull: true,
+  },
+  captureDate: {
+    type: DataTypes.DATE,
+    field: 'capture_date',
+    allowNull: true,
+  },
+  location: {
+    type: DataTypes.JSONB,
+    allowNull: true,
+  },
+  locationPrivacy: {
+    type: DataTypes.STRING,
+    field: 'location_privacy',
+    defaultValue: 'private',
+  },
+  isFavourite: {
+    type: DataTypes.BOOLEAN,
+    field: 'is_favourite',
+    defaultValue: false,
+  },
+  isArchived: {
+    type: DataTypes.BOOLEAN,
+    field: 'is_archived',
+    defaultValue: false,
+  },
+  visibility: {
+    type: DataTypes.STRING,
+    defaultValue: 'private',
+  },
+  aiStatus: {
+    type: DataTypes.STRING,
+    field: 'ai_status',
+    defaultValue: 'pending',
+  },
+  sourceDeviceId: {
+    type: DataTypes.UUID,
+    field: 'source_device_id',
+    allowNull: true,
+  },
+  deletedAt: {
+    type: DataTypes.DATE,
+    field: 'deleted_at',
     allowNull: true,
   },
 }, {
+  tableName: 'photos',
   timestamps: true,
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
 });
-
-Photo.belongsTo(User, { foreignKey: 'userId' });
 
 module.exports = Photo;

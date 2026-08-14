@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const User = require('./User');
 
 const TimeCapsule = sequelize.define('TimeCapsule', {
   id: {
@@ -10,41 +9,61 @@ const TimeCapsule = sequelize.define('TimeCapsule', {
   },
   userId: {
     type: DataTypes.UUID,
+    field: 'user_id',
     allowNull: false,
-    references: { model: User, key: 'id' },
   },
   title: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  content: {
-    type: DataTypes.TEXT('long'),
+  message: {
+    type: DataTypes.TEXT,
     allowNull: true,
   },
-  type: {
-    type: DataTypes.ENUM('text', 'image', 'video', 'audio'),
-    defaultValue: 'text',
+  timeZone: {
+    type: DataTypes.STRING,
+    field: 'time_zone',
+    defaultValue: 'UTC',
   },
-  mediaUrl: {
-    type: DataTypes.STRING(500),
-    allowNull: true,
-  },
-  unlockDate: {
-    type: DataTypes.DATEONLY,
+  unlockAt: {
+    type: DataTypes.DATE,
+    field: 'unlock_at',
     allowNull: false,
   },
-  unlockEvent: {
+  recipientEmail: {
     type: DataTypes.STRING,
+    field: 'recipient_email',
     allowNull: true,
   },
-  isLocked: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true,
+  recipientUserId: {
+    type: DataTypes.UUID,
+    field: 'recipient_user_id',
+    allowNull: true,
+  },
+  status: {
+    type: DataTypes.ENUM('locked', 'ready', 'delivered', 'opened', 'cancelled'),
+    defaultValue: 'locked',
+  },
+  deliveryState: {
+    type: DataTypes.ENUM('pending', 'notified', 'failed'),
+    field: 'delivery_state',
+    defaultValue: 'pending',
+  },
+  cancellableUntil: {
+    type: DataTypes.DATE,
+    field: 'cancellable_until',
+    allowNull: true,
+  },
+  openedAt: {
+    type: DataTypes.DATE,
+    field: 'opened_at',
+    allowNull: true,
   },
 }, {
+  tableName: 'time_capsules',
   timestamps: true,
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
 });
-
-TimeCapsule.belongsTo(User, { foreignKey: 'userId' });
 
 module.exports = TimeCapsule;

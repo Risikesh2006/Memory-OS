@@ -16,6 +16,8 @@ const aiRoutes = require('./routes/aiRoutes');
 const collectionRoutes = require('./routes/collectionRoutes');
 const timeCapsuleRoutes = require('./routes/timeCapsuleRoutes');
 const analyticsRoutes = require('./routes/analyticsRoutes');
+const deviceRoutes = require('./routes/deviceRoutes');
+const vaultRoutes = require('./routes/vaultRoutes');
 
 const app = express();
 const PORT = process.env.API_PORT || 5000;
@@ -40,6 +42,8 @@ app.use('/api/ai', aiRoutes);
 app.use('/api/collections', collectionRoutes);
 app.use('/api/capsules', timeCapsuleRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/devices', deviceRoutes);
+app.use('/api/vaults', vaultRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -63,7 +67,7 @@ const startServer = async () => {
     });
   } catch (error) {
     console.error('❌ Failed to start server:', error.message);
-    console.error('Make sure MySQL is running and .env is configured correctly.');
+    console.error('Make sure DATABASE_URL points at your Supabase Postgres instance and .env is configured correctly (see .env.example).');
     process.exit(1);
   }
 };

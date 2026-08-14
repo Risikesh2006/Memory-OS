@@ -12,5 +12,6 @@ router.get('/on-this-day', controller.onThisDay);
 router.get('/insights', controller.insights);
 router.get('/memories', controller.getAllMemories);
 router.post('/narrative', controller.generateNarrative);
+router.post('/tags/suggest', controller.suggestTags);
 
 module.exports = router;

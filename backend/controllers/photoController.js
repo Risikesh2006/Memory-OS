@@ -68,7 +68,7 @@ exports.searchPhotos = async (req, res) => {
     const photos = await Photo.findAll({
       where: {
         userId: req.user.id,
-        title: { [require('sequelize').Op.like]: `%${q}%` },
+        title: { [require('sequelize').Op.iLike]: `%${q}%` },
       },
     });
     res.json(photos);

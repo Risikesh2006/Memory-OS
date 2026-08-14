@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const Profile = require('../models/Profile');
 const Photo = require('../models/Photo');
 const Video = require('../models/Video');
 const Journal = require('../models/Journal');
@@ -7,20 +7,16 @@ const Milestone = require('../models/Milestone');
 // Get user profile
 exports.getProfile = async (req, res) => {
   try {
-    const user = await User.findByPk(req.user.id, {
-      attributes: { exclude: ['password'] },
-    });
+    const profile = await Profile.findByPk(req.user.id);
+    if (!profile) return res.status(404).json({ message: 'Profile not found' });
 
-    if (!user) return res.status(404).json({ message: 'User not found' });
-
-    // Get stats
     const photos = await Photo.count({ where: { userId: req.user.id } });
     const videos = await Video.count({ where: { userId: req.user.id } });
     const journals = await Journal.count({ where: { userId: req.user.id } });
     const milestones = await Milestone.count({ where: { userId: req.user.id } });
 
     res.json({
-      ...user.dataValues,
+      ...profile.dataValues,
       totalPhotos: photos,
       totalVideos: videos,
       journalEntries: journals,
@@ -35,21 +31,20 @@ exports.getProfile = async (req, res) => {
 // Update profile
 exports.updateProfile = async (req, res) => {
   try {
-    const user = await User.findByPk(req.user.id);
-    if (!user) return res.status(404).json({ message: 'User not found' });
+    const profile = await Profile.findByPk(req.user.id);
+    if (!profile) return res.status(404).json({ message: 'Profile not found' });
 
-    const { fullName, bio, profileImage } = req.body;
+    const { fullName, bio, avatarUrl, timeZone, locale } = req.body;
 
-    if (fullName) user.fullName = fullName;
-    if (bio) user.bio = bio;
-    if (profileImage) user.profileImage = profileImage;
+    if (fullName !== undefined) profile.fullName = fullName;
+    if (bio !== undefined) profile.bio = bio;
+    if (avatarUrl !== undefined) profile.avatarUrl = avatarUrl;
+    if (timeZone !== undefined) profile.timeZone = timeZone;
+    if (locale !== undefined) profile.locale = locale;
 
-    await user.save();
+    await profile.save();
 
-    res.json({
-      ...user.dataValues,
-      password: undefined,
-    });
+    res.json(profile.dataValues);
   } catch (error) {
     res.status(500).json({ message: 'Failed to update profile', error: error.message });
   }

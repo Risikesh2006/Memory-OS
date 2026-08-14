@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const User = require('./User');
 
 const Milestone = sequelize.define('Milestone', {
   id: {
@@ -10,11 +9,8 @@ const Milestone = sequelize.define('Milestone', {
   },
   userId: {
     type: DataTypes.UUID,
+    field: 'user_id',
     allowNull: false,
-    references: {
-      model: User,
-      key: 'id',
-    },
   },
   title: {
     type: DataTypes.STRING,
@@ -32,10 +28,30 @@ const Milestone = sequelize.define('Milestone', {
     type: DataTypes.ENUM('Education', 'Career', 'Personal', 'Travel', 'Achievement'),
     defaultValue: 'Achievement',
   },
+  isFavourite: {
+    type: DataTypes.BOOLEAN,
+    field: 'is_favourite',
+    defaultValue: false,
+  },
+  isArchived: {
+    type: DataTypes.BOOLEAN,
+    field: 'is_archived',
+    defaultValue: false,
+  },
+  visibility: {
+    type: DataTypes.STRING,
+    defaultValue: 'private',
+  },
+  deletedAt: {
+    type: DataTypes.DATE,
+    field: 'deleted_at',
+    allowNull: true,
+  },
 }, {
+  tableName: 'milestones',
   timestamps: true,
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
 });
-
-Milestone.belongsTo(User, { foreignKey: 'userId' });
 
 module.exports = Milestone;

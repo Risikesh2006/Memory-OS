@@ -1,5 +1,10 @@
 # Legacy OS - Project Complete! 🎉
 
+> **Stale snapshot notice:** this document describes the original MVP (June 2025) and predates
+> the Vault/Time Capsule/AI Chat/Documentary/Museum/Replay features, the Supabase migration, and
+> phone-OTP auth. Treat it as historical context, not the current state -- see `SETUP_GUIDE.md`
+> and `supabase/migrations/` for what's actually running today.
+
 ## Project Overview
 
 Legacy OS is a **production-quality full-stack web application** for preserving digital memories. It's designed with premium aesthetics, modern technology, and responsive functionality across all devices.
