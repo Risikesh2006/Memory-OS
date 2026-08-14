@@ -71,6 +71,13 @@ Think of it as **the director's cut of your own story.**
 - **Combined Feed** — Photos, videos, journals, and milestones in one stream
 - **Animated Scroll** — Cinematic scroll-triggered animations
 
+### 🧠 Memory Archive
+- **Masonry Grid** – Beautiful responsive card layout
+- **AI Summaries** – Auto-generated memory descriptions
+- **Filter & Search** – Filter by Images, Notes, Events, AI Summaries
+- **Neumorphic Cards** – Premium hover lift effects
+- **Persistent Storage** – Saved across sessions via localStorage
+
 ### 🎨 Dashboard Analytics
 - **Memory Statistics** — Total memories, photos, videos, and journals at a glance
 - **Recent Activity** — See what you've added most recently
