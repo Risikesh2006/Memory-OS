@@ -1,6 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
+/**
+ * Photo model — represents a single uploaded photo owned by a user.
+ */
 const Photo = sequelize.define('Photo', {
   id: {
     type: DataTypes.UUID,
