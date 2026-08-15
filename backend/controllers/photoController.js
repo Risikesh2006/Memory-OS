@@ -1,3 +1,7 @@
+/**
+ * Photo controller — handles CRUD operations for user-uploaded photos.
+ * All routes are scoped to the authenticated user via req.user.id.
+ */
 const Photo = require('../models/Photo');
 const { v4: uuidv4 } = require('uuid');
 
