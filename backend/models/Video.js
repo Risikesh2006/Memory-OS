@@ -1,6 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
+/**
+ * Video model — represents a single uploaded video owned by a user.
+ */
 const Video = sequelize.define('Video', {
   id: {
     type: DataTypes.UUID,
