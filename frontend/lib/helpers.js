@@ -1,4 +1,5 @@
-// Frontend quick reference for common operations
+// Frontend quick reference for common operations.
+// Each helper lazily imports its underlying service to keep this file dependency-light.
 
 // Authentication
 export async function login(email, password) {
