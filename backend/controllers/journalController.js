@@ -1,3 +1,7 @@
+/**
+ * Journal controller — handles CRUD operations for user journal entries.
+ * All routes are scoped to the authenticated user via req.user.id.
+ */
 const Journal = require('../models/Journal');
 const { v4: uuidv4 } = require('uuid');
 const { Op } = require('sequelize');
