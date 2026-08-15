@@ -1,3 +1,7 @@
+/**
+ * Video controller — handles CRUD operations for user-uploaded videos.
+ * All routes are scoped to the authenticated user via req.user.id.
+ */
 const Video = require('../models/Video');
 const { v4: uuidv4 } = require('uuid');
 const { Op } = require('sequelize');
