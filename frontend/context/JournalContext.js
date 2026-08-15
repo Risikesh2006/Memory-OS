@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useEffect } from 'react';
 
+/** Provides journal entries and mood metadata to the app via React context. */
 const JournalContext = createContext(null);
 
 const MOODS = [
