@@ -1,3 +1,7 @@
+/**
+ * Milestone controller — handles CRUD operations for life-event milestones.
+ * All routes are scoped to the authenticated user via req.user.id.
+ */
 const Milestone = require('../models/Milestone');
 const { v4: uuidv4 } = require('uuid');
 
